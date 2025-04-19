@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 set -e
 
+# Check if running on Linux
+check_platform() {
+    if [ "$(uname -s)" = "Linux" ]; then
+        echo "❌ Linux support is coming soon!"
+        echo "Currently only macOS is supported."
+        echo "Please check back later for Linux support."
+        exit 1
+    elif [ "$(uname -s)" != "Darwin" ]; then
+        echo "❌ Unsupported operating system. recMEV currently only supports macOS."
+        echo "Linux support coming soon!"
+        exit 1
+    fi
+}
+
 # Function to ensure ~/.local/bin exists and is in PATH
 ensure_local_bin() {
     # Create ~/.local/bin if it doesn't exist
@@ -35,7 +49,10 @@ do_install() {
     VERSION="master"
     REPO="RECTOR-LABS/recMEV-installer"
 
-    echo "🔧 Installing recMEV $VERSION..."
+    # Check platform compatibility
+    check_platform
+    
+    echo "🔧 Installing recMEV $VERSION for macOS..."
 
     # Ensure ~/.local/bin exists and is in PATH
     ensure_local_bin

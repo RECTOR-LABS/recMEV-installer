@@ -4,12 +4,17 @@ This repository contains the installation package for recMEV.
 
 ## Overview
 
-recMEV installer package provides an automated way to install the recMEV binary on your system. It is designed for Linux systems and installs to your user's local binary directory (`~/.local/bin`).
+recMEV installer package provides an automated way to install the recMEV binary on your system. Currently available for:
+
+- macOS
+- Linux (Coming Soon!)
+
+The installer places the binary in your user's local binary directory (`~/.local/bin`).
 
 ## Components
 
-- `recmev`: Linux binary
-- `install.sh`: Installation script
+- `recmev`: macOS binary (Linux version coming soon)
+- `install.sh`: Installation script with platform detection
 
 ## Installation
 
@@ -100,6 +105,14 @@ For local development and testing of the installer:
 RECMEV_INSTALLER_LOCAL=1 ./install.sh
 ```
 
+### Platform Notes
+
+The installer automatically detects your operating system and will:
+
+- Proceed with installation on macOS
+- Show a friendly message about upcoming Linux support on Linux systems
+- Exit with an error on unsupported platforms
+
 ## Troubleshooting
 
 Common issues and solutions:
@@ -132,4 +145,4 @@ For issues, feature requests, or contributions:
 
 ## License
 
-[Add License Information]
+MIT
