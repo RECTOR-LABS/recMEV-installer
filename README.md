@@ -83,15 +83,13 @@ You can find all available versions on our [GitHub releases page](https://github
 
 ## Uninstallation
 
-To uninstall recMEV, you can use either of these methods:
+To uninstall recMEV, simply run:
 
 ```bash
-# Method 1: Using the install script
-./install.sh uninstall
-
-# Method 2: Manual removal
-rm ~/.local/bin/recmev
+recmev uninstall
 ```
+
+This command will remove recMEV from your system.
 
 ## Post-Installation Verification
 

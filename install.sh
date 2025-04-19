@@ -88,27 +88,5 @@ do_install() {
     echo "Run 'recmev --help' to get started."
 }
 
-# Function to uninstall recMEV
-do_uninstall() {
-    echo "🗑️  Uninstalling recMEV..."
-    if [ -f ~/.local/bin/recmev ]; then
-        rm ~/.local/bin/recmev
-        echo "✅ recMEV has been uninstalled successfully!"
-    else
-        echo "❌ recMEV binary not found in ~/.local/bin"
-    fi
-}
-
-# Main script logic
-case "${1:-install}" in
-    "install")
-        do_install
-        ;;
-    "uninstall")
-        do_uninstall
-        ;;
-    *)
-        echo "Usage: $0 [install|uninstall]"
-        exit 1
-        ;;
-esac
+# Main script execution
+do_install
