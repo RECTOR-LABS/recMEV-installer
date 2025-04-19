@@ -7,8 +7,8 @@ OS=$(uname | tr '[:upper:]' '[:lower:]')
 echo "🔧 Installing recMEV $VERSION for $OS..."
 
 # Define URLs
-BINARY_URL="https://raw.githubusercontent.com/rector-labs/recmev-installer/$VERSION/recmev-${OS}"
-CHECKSUM_URL="https://raw.githubusercontent.com/rector-labs/recmev-installer/$VERSION/checksums-${OS}.txt"
+BINARY_URL="https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/$VERSION/recmev-${OS}"
+CHECKSUM_URL="https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/$VERSION/checksums-${OS}.txt"
 
 # Download binary and checksum
 echo "📥 Downloading recMEV binary..."
