@@ -1,18 +1,15 @@
 # recMEV Installer
 
-This repository contains the installation package for recMEV, providing support for both Linux and macOS platforms.
+This repository contains the installation package for recMEV.
 
 ## Overview
 
-recMEV installer package provides an automated way to install the recMEV binary on your system. It supports both Linux and macOS platforms with pre-compiled binaries and verification checksums.
+recMEV installer package provides an automated way to install the recMEV binary on your system. It is designed for Linux systems.
 
 ## Components
 
-- `recmev-linux`: Linux binary
-- `recmev-macos`: macOS binary
+- `recmev`: Linux binary
 - `install.sh`: Installation script
-- `checksums-linux.txt`: SHA256 checksums for Linux binary
-- `checksums-macos.txt`: SHA256 checksums for macOS binary
 
 ## Installation
 
@@ -26,9 +23,7 @@ sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-install
 
 This method will:
 
-- Automatically detect your operating system
-- Download the appropriate binary
-- Verify the checksum
+- Download the binary
 - Install recMEV to your system
 
 ### Option 2: Direct Script Execution
@@ -43,30 +38,9 @@ If you've cloned the repository or downloaded the install script:
 
 For users who prefer to perform the installation steps manually:
 
-For macOS:
-
 ```bash
-# Download binary and checksum
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/recmev-macos -o recmev
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/checksums-macos.txt -o checksums-macos.txt
-
-# Verify checksum
-shasum -a 256 -c checksums-macos.txt
-
-# Install binary
-chmod +x recmev
-sudo mv recmev /usr/local/bin/recmev
-```
-
-For Linux:
-
-```bash
-# Download binary and checksum
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/recmev-linux -o recmev
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/checksums-linux.txt -o checksums-linux.txt
-
-# Verify checksum
-sha256sum -c checksums-linux.txt
+# Download binary
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/recmev -o recmev
 
 # Install binary
 chmod +x recmev
@@ -85,10 +59,9 @@ recmev --help
 
 The installation process includes several security measures:
 
-1. Checksum verification of binaries
-2. HTTPS downloads from trusted sources
-3. Secure temporary directory handling
-4. Proper permission setting
+1. HTTPS downloads from trusted sources
+2. Secure temporary directory handling
+3. Proper permission setting
 
 ## Version Information
 
@@ -113,7 +86,7 @@ Common issues and solutions:
    sudo chmod +x ./install.sh  # Make the script executable
    ```
 
-2. Checksum verification failed
+2. Download failed
 
    - Ensure you have a stable internet connection
    - Try downloading the files again
