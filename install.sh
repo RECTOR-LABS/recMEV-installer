@@ -7,26 +7,18 @@ REPO="RECTOR-LABS/recMEV-installer"
 
 echo "🔧 Installing recMEV $VERSION for $OS..."
 
-# Define URLs
-BINARY_URL="https://raw.githubusercontent.com/$REPO/$VERSION/recmev-${OS}"
-CHECKSUM_URL="https://raw.githubusercontent.com/$REPO/$VERSION/checksums-${OS}.txt"
-
 # Create temporary directory
 TMP_DIR=$(mktemp -d)
 cd "$TMP_DIR"
 
-# Download binary and checksum
+# Download files directly from the repository
 echo "📥 Downloading recMEV binary..."
-if ! curl -fsSL "$BINARY_URL" -o "recmev"; then
-    echo "❌ Failed to download binary. Please check your internet connection and try again."
-    rm -rf "$TMP_DIR"
-    exit 1
-fi
-
-if ! curl -fsSL "$CHECKSUM_URL" -o "checksums-${OS}.txt"; then
-    echo "❌ Failed to download checksum file. Please check your internet connection and try again."
-    rm -rf "$TMP_DIR"
-    exit 1
+if [[ "$OS" == "darwin" ]]; then
+    cp "/Users/rz/Documents/dev/recMEV-installer/recmev-macos" "recmev"
+    cp "/Users/rz/Documents/dev/recMEV-installer/checksums-macos.txt" "checksums-${OS}.txt"
+else
+    cp "/Users/rz/Documents/dev/recMEV-installer/recmev-linux" "recmev"
+    cp "/Users/rz/Documents/dev/recMEV-installer/checksums-linux.txt" "checksums-${OS}.txt"
 fi
 
 # Verify checksum
