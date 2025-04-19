@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
-# Check if running on Linux
+# Check if running on supported platform
 check_platform() {
-    if [ "$(uname -s)" = "Linux" ]; then
-        echo "❌ Linux support is coming soon!"
-        echo "Currently only macOS is supported."
-        echo "Please check back later for Linux support."
-        exit 1
-    elif [ "$(uname -s)" != "Darwin" ]; then
-        echo "❌ Unsupported operating system. recMEV currently only supports macOS."
-        echo "Linux support coming soon!"
+    OS="$(uname -s)"
+    if [ "$OS" = "Linux" ]; then
+        BINARY_NAME="recmev-v0.1.3-linux"
+    elif [ "$OS" = "Darwin" ]; then
+        BINARY_NAME="recmev-v0.1.3-mac"
+    else
+        echo "❌ Unsupported operating system. recMEV currently only supports Linux and macOS."
         exit 1
     fi
 }
@@ -46,13 +45,13 @@ ensure_local_bin() {
 
 # Function to handle the installation process
 do_install() {
-    VERSION="master"
+    VERSION="v0.1.3"
     REPO="RECTOR-LABS/recMEV-installer"
 
-    # Check platform compatibility
+    # Check platform compatibility and set binary name
     check_platform
     
-    echo "🔧 Installing recMEV $VERSION for macOS..."
+    echo "🔧 Installing recMEV $VERSION for $(uname -s)..."
 
     # Ensure ~/.local/bin exists and is in PATH
     ensure_local_bin
@@ -65,10 +64,10 @@ do_install() {
     echo "📥 Downloading recMEV binary..."
     if [ -n "$RECMEV_INSTALLER_LOCAL" ]; then
         # Local development installation
-        cp "/Users/rz/Documents/dev/recMEV-installer/recmev" "recmev"
+        cp "/Users/rz/Documents/dev/recMEV-installer/$BINARY_NAME" "recmev"
     else
         # Remote installation via curl
-        curl -L "https://raw.githubusercontent.com/${REPO}/${VERSION}/recmev" -o "recmev"
+        curl -L "https://raw.githubusercontent.com/${REPO}/${VERSION}/${BINARY_NAME}" -o "recmev"
     fi
 
     # Install binary

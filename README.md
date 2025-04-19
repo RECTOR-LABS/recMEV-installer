@@ -7,13 +7,14 @@ This repository contains the installation package for recMEV.
 recMEV installer package provides an automated way to install the recMEV binary on your system. Currently available for:
 
 - macOS
-- Linux (Coming Soon!)
+- Linux
 
 The installer places the binary in your user's local binary directory (`~/.local/bin`).
 
 ## Components
 
-- `recmev`: macOS binary (Linux version coming soon)
+- `recmev-v0.1.3-mac`: macOS binary
+- `recmev-v0.1.3-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -23,14 +24,14 @@ The installer places the binary in your user's local binary directory (`~/.local
 Install recMEV with a single command:
 
 ```bash
-sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/install.sh)"
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.1.3/install.sh)"
 ```
 
 This method will:
 
 - Create ~/.local/bin if it doesn't exist
 - Add ~/.local/bin to your PATH (if needed)
-- Download and install the binary
+- Download and install the appropriate binary for your system
 
 ### Option 2: Direct Script Execution
 
@@ -51,8 +52,8 @@ mkdir -p ~/.local/bin
 # Add to PATH if not already there (add this to your shell's rc file)
 export PATH="$HOME/.local/bin:$PATH"
 
-# Download binary
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/recmev -o recmev
+# Download binary (replace OS with either 'linux' or 'mac' based on your system)
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.1.3/recmev-v0.1.3-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -94,7 +95,7 @@ The installation process includes several security measures:
 
 ## Version Information
 
-Current version: master
+Current version: v0.1.3
 
 ## Development
 
@@ -109,8 +110,7 @@ RECMEV_INSTALLER_LOCAL=1 ./install.sh
 
 The installer automatically detects your operating system and will:
 
-- Proceed with installation on macOS
-- Show a friendly message about upcoming Linux support on Linux systems
+- Install the appropriate binary for Linux or macOS systems
 - Exit with an error on unsupported platforms
 
 ## Troubleshooting
