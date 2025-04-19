@@ -4,7 +4,7 @@ set -e
 # Check if running on supported platform
 check_platform() {
     OS="$(uname -s)"
-    VERSION=${VERSION:-"v0.1.3"}  # Use provided version or default to v0.1.3
+    VERSION=${VERSION:-"v0.2.0"}  # Use provided version or default to v0.2.0
     
     if [ "$OS" = "Linux" ]; then
         BINARY_NAME="recmev-${VERSION}-linux"
@@ -47,7 +47,7 @@ ensure_local_bin() {
 
 # Function to handle the installation process
 do_install() {
-    VERSION=${VERSION:-"v0.1.3"}  # Use provided version or default to v0.1.3
+    VERSION=${VERSION:-"v0.2.0"}  # Use provided version or default to v0.2.0
     REPO="RECTOR-LABS/recMEV-installer"
     RELEASE_URL="https://github.com/${REPO}/releases/download/${VERSION}"
 
