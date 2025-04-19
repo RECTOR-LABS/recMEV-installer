@@ -4,7 +4,7 @@ This repository contains the installation package for recMEV.
 
 ## Overview
 
-recMEV installer package provides an automated way to install the recMEV binary on your system. It is designed for Linux systems.
+recMEV installer package provides an automated way to install the recMEV binary on your system. It is designed for Linux systems and installs to your user's local binary directory (`~/.local/bin`).
 
 ## Components
 
@@ -23,8 +23,9 @@ sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-install
 
 This method will:
 
-- Download the binary
-- Install recMEV to your system
+- Create ~/.local/bin if it doesn't exist
+- Add ~/.local/bin to your PATH (if needed)
+- Download and install the binary
 
 ### Option 2: Direct Script Execution
 
@@ -39,12 +40,30 @@ If you've cloned the repository or downloaded the install script:
 For users who prefer to perform the installation steps manually:
 
 ```bash
+# Create local bin directory if it doesn't exist
+mkdir -p ~/.local/bin
+
+# Add to PATH if not already there (add this to your shell's rc file)
+export PATH="$HOME/.local/bin:$PATH"
+
 # Download binary
 curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/recmev -o recmev
 
 # Install binary
 chmod +x recmev
-sudo mv recmev /usr/local/bin/recmev
+mv recmev ~/.local/bin/recmev
+```
+
+## Uninstallation
+
+To uninstall recMEV, you can use either of these methods:
+
+```bash
+# Method 1: Using the install script
+./install.sh uninstall
+
+# Method 2: Manual removal
+rm ~/.local/bin/recmev
 ```
 
 ## Post-Installation Verification
@@ -55,13 +74,18 @@ After installation, verify that recMEV was installed correctly:
 recmev --help
 ```
 
+Note: If you've just added ~/.local/bin to your PATH, you'll need to either:
+
+- Restart your terminal
+- Run `source ~/.bashrc` (or `~/.zshrc` for zsh users)
+
 ## Security
 
 The installation process includes several security measures:
 
 1. HTTPS downloads from trusted sources
 2. Secure temporary directory handling
-3. Proper permission setting
+3. User-space installation (no sudo required)
 
 ## Version Information
 
@@ -83,7 +107,7 @@ Common issues and solutions:
 1. Permission denied
 
    ```bash
-   sudo chmod +x ./install.sh  # Make the script executable
+   chmod +x ./install.sh  # Make the script executable
    ```
 
 2. Download failed
@@ -93,7 +117,9 @@ Common issues and solutions:
    - Verify you're using the correct version
 
 3. Binary not found after installation
-   - Ensure `/usr/local/bin` is in your PATH
+   - Ensure ~/.local/bin is in your PATH
+   - Try running `echo $PATH` to verify
+   - Source your shell's rc file or restart your terminal
    - Try running `which recmev` to locate the binary
 
 ## Support
