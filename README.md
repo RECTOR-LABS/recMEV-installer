@@ -15,7 +15,7 @@ recMEV installer package provides an automated way to install the recMEV binary 
 
 ### Option 1: One-Line Installation (Recommended)
 
-Install recMEV with a single command (similar to Solana CLI installation):
+Install recMEV with a single command:
 
 ```bash
 sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/install.sh)"
