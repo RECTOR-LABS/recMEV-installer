@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-VERSION="main"
+VERSION="master"
 OS=$(uname | tr '[:upper:]' '[:lower:]')
 
 echo "🔧 Installing recMEV $VERSION for $OS..."

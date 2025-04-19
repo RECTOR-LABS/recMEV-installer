@@ -21,7 +21,7 @@ recMEV installer package provides an automated way to install the recMEV binary 
 1. Download and run the installation script:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/install.sh | bash
 ```
 
 ### Option 2: Manual Installation
@@ -31,7 +31,7 @@ curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/main/i
 For macOS:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/main/recmev-macos -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/recmev-macos -o recmev
 chmod +x recmev
 sudo mv recmev /usr/local/bin/recmev
 ```
@@ -39,7 +39,7 @@ sudo mv recmev /usr/local/bin/recmev
 For Linux:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/main/recmev-linux -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/recmev-linux -o recmev
 chmod +x recmev
 sudo mv recmev /usr/local/bin/recmev
 ```
@@ -70,7 +70,7 @@ recmev --help
 
 ## Version
 
-Current version: main
+Current version: master
 
 ## Notes
 
