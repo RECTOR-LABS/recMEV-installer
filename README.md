@@ -60,6 +60,27 @@ chmod +x recmev
 mv recmev ~/.local/bin/recmev
 ```
 
+### Installing Specific Versions
+
+You can install a specific version of recMEV by setting the `VERSION` environment variable before running the installation script. For example, to install version v0.1.2:
+
+```bash
+# Method 1: One-line installation with specific version
+VERSION=v0.1.2 sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.1.2/install.sh)"
+
+# Method 2: Using downloaded install script
+VERSION=v0.1.2 ./install.sh
+```
+
+Available versions:
+
+- v0.1.3 (latest)
+- v0.1.2
+- v0.1.1
+- v0.1.0
+
+You can find all available versions on our [GitHub releases page](https://github.com/RECTOR-LABS/recMEV-installer/releases).
+
 ## Uninstallation
 
 To uninstall recMEV, you can use either of these methods:
