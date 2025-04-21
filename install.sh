@@ -10,7 +10,12 @@ else
     if [ -n "$CURL_SCRIPT_URL" ]; then
         VERSION=$(echo "$CURL_SCRIPT_URL" | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' || true)
     else
-        VERSION=$(echo "$0" | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' || true)
+        # Try to extract version from environment variable set during curl execution
+        if [ -n "$SCRIPT_URL" ]; then
+            VERSION=$(echo "$SCRIPT_URL" | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' || true)
+        else
+            VERSION=$(echo "$0" | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' || true)
+        fi
     fi
     
     if [ -z "$VERSION" ]; then

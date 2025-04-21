@@ -13,8 +13,8 @@ The installer places the binary in your user's local binary directory (`~/.local
 
 ## Components
 
-- `recmev-v0.2.3-mac`: macOS binary
-- `recmev-v0.2.3-linux`: Linux binary
+- `recmev-v0.2.4-mac`: macOS binary
+- `recmev-v0.2.4-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -24,7 +24,7 @@ The installer places the binary in your user's local binary directory (`~/.local
 Install recMEV with a single command:
 
 ```bash
-sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.2.3/install.sh)"
+SCRIPT_URL="https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.2.4/install.sh" sh -c "$(curl -sSfL "$SCRIPT_URL")"
 ```
 
 This method will:
@@ -53,7 +53,7 @@ mkdir -p ~/.local/bin
 export PATH="$HOME/.local/bin:$PATH"
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.2.3/recmev-v0.2.3-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.2.4/recmev-v0.2.4-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -62,19 +62,20 @@ mv recmev ~/.local/bin/recmev
 
 ### Installing Specific Versions
 
-You can install a specific version of recMEV by setting the `VERSION` environment variable before running the installation script. For example, to install version v0.1.2:
+You can install a specific version of recMEV by modifying the version in the installation URL. For example, to install version v0.1.2:
 
 ```bash
 # Method 1: One-line installation with specific version
-VERSION=v0.1.2 sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.1.2/install.sh)"
+SCRIPT_URL="https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.1.2/install.sh" sh -c "$(curl -sSfL "$SCRIPT_URL")"
 
 # Method 2: Using downloaded install script
-VERSION=v0.1.2 ./install.sh
+./install.sh
 ```
 
 Available versions:
 
-- v0.2.3 (latest)
+- v0.2.4 (latest)
+- v0.2.3
 - v0.2.2
 - v0.2.1
 - v0.2.0
@@ -118,7 +119,7 @@ The installation process includes several security measures:
 
 ## Version Information
 
-Current version: v0.2.3
+Current version: v0.2.4
 
 ## Development
 
