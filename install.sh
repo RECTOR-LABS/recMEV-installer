@@ -1,28 +1,8 @@
 #!/usr/bin/env sh
 set -e
 
-# Set version - handle both remote and local installations
-if [ -n "$RECMEV_INSTALLER_LOCAL" ]; then
-    # Local development: read from version.txt
-    VERSION=$(cat version.txt)
-else
-    # Remote installation: extract version from script URL
-    if [ -n "$CURL_SCRIPT_URL" ]; then
-        VERSION=$(echo "$CURL_SCRIPT_URL" | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' || true)
-    else
-        # Try to extract version from environment variable set during curl execution
-        if [ -n "$SCRIPT_URL" ]; then
-            VERSION=$(echo "$SCRIPT_URL" | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' || true)
-        else
-            VERSION=$(echo "$0" | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' || true)
-        fi
-    fi
-    
-    if [ -z "$VERSION" ]; then
-        echo "❌ Could not determine version. Please ensure you're using the versioned URL (e.g., .../v0.2.2/install.sh)"
-        exit 1
-    fi
-fi
+# Hardcoded version
+VERSION="v0.2.4"
 
 # Check if running on supported platform
 check_platform() {

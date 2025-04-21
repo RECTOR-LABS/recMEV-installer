@@ -24,7 +24,7 @@ The installer places the binary in your user's local binary directory (`~/.local
 Install recMEV with a single command:
 
 ```bash
-SCRIPT_URL="https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.2.4/install.sh" sh -c "$(curl -sSfL "$SCRIPT_URL")"
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.2.4/install.sh)"
 ```
 
 This method will:
@@ -62,14 +62,10 @@ mv recmev ~/.local/bin/recmev
 
 ### Installing Specific Versions
 
-You can install a specific version of recMEV by modifying the version in the installation URL. For example, to install version v0.1.2:
+To install a specific version of recMEV, you'll need to modify the version number in the installation URL. For example, to install version v0.1.2:
 
 ```bash
-# Method 1: One-line installation with specific version
-SCRIPT_URL="https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.1.2/install.sh" sh -c "$(curl -sSfL "$SCRIPT_URL")"
-
-# Method 2: Using downloaded install script
-./install.sh
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.1.2/install.sh)"
 ```
 
 Available versions:
