@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -e
 
 # Check if running on supported platform
@@ -22,7 +22,7 @@ ensure_local_bin() {
     mkdir -p ~/.local/bin
 
     # Add to PATH if not already there
-    if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    if ! echo "$PATH" | grep -q "$HOME/.local/bin"; then
         echo "Adding ~/.local/bin to PATH in your shell profile..."
         
         # Detect shell and update appropriate profile
@@ -54,7 +54,7 @@ do_install() {
     # Check platform compatibility and set binary name
     check_platform
     
-    echo "🔧 Installing recMEV $VERSION for $(uname -s)..."
+    echo "🔧 Installing recMEV ${VERSION} for $(uname -s)..."
 
     # Ensure ~/.local/bin exists and is in PATH
     ensure_local_bin
