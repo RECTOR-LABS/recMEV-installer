@@ -50,7 +50,7 @@ ensure_local_bin() {
 # Function to handle the installation process
 do_install() {
     REPO="RECTOR-LABS/recMEV-installer"
-    RELEASE_URL="https://github.com/${REPO}/releases/download/${VERSION}"
+    BASE_URL="https://raw.githubusercontent.com/${REPO}/master"
 
     # Check platform compatibility and set binary name
     check_platform
@@ -70,8 +70,14 @@ do_install() {
         # Local development installation
         cp "/Users/rz/Documents/dev/recMEV-installer/$BINARY_NAME" "recmev"
     else
-        # Remote installation via curl from GitHub releases
-        curl -L "${RELEASE_URL}/${BINARY_NAME}" -o "recmev"
+        # Remote installation via curl from GitHub raw content
+        curl -L "${BASE_URL}/${BINARY_NAME}" -o "recmev"
+    fi
+
+    # Verify download was successful
+    if [ ! -s "recmev" ]; then
+        echo "❌ Download failed. Please check your internet connection and try again."
+        exit 1
     fi
 
     # Install binary

@@ -24,7 +24,7 @@ The installer places the binary in your user's local binary directory (`~/.local
 Install recMEV with a single command:
 
 ```bash
-sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.2.4/install.sh)"
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/install.sh)"
 ```
 
 This method will:
@@ -53,7 +53,7 @@ mkdir -p ~/.local/bin
 export PATH="$HOME/.local/bin:$PATH"
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.2.4/recmev-v0.2.4-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/recmev-v0.2.4-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -147,7 +147,7 @@ Common issues and solutions:
 
    - Ensure you have a stable internet connection
    - Try downloading the files again
-   - Verify you're using the correct version
+   - Verify your system is supported (Linux or macOS)
 
 3. Binary not found after installation
    - Ensure ~/.local/bin is in your PATH
