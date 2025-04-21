@@ -50,7 +50,7 @@ ensure_local_bin() {
 # Function to handle the installation process
 do_install() {
     REPO="RECTOR-LABS/recMEV-installer"
-    BASE_URL="https://raw.githubusercontent.com/${REPO}/master"
+    BASE_URL="https://raw.githubusercontent.com/${REPO}/${VERSION}"
 
     # Check platform compatibility and set binary name
     check_platform
