@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.2] - 2024-03-25
+
+### Changed
+
+- Improved build system with Git hash handling
+- Updated Makefile to include Git hash in binary builds
+- Optimized Git hash retrieval in main.rs using compile-time environment variables
+
 ## [0.5.1] - 2024-03-24
 
 ### Added
