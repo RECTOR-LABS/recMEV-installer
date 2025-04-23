@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.3] - 2024-03-26
+
+### Added
+
+- Enhanced CLI user feedback with additional console output for better user experience
+- Improved visibility of update and uninstall processes with real-time status messages
+
 ## [0.5.2] - 2024-03-25
 
 ### Changed
