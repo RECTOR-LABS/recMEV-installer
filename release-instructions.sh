@@ -31,14 +31,14 @@ confirm_action() {
 
 # Function to determine version from binary files
 determine_version() {
-    # Look for mac binary to determine version
-    local mac_binary=$(ls recmev-v*-mac 2>/dev/null | head -n 1)
+    # Look for mac binary to determine version, sort by version number and get the latest
+    local mac_binary=$(ls recmev-v*-mac 2>/dev/null | sort -V | tail -n 1)
     if [ -z "$mac_binary" ]; then
         print_error "No Mac binary found. Cannot determine version."
         exit 1
     fi
     
-    # Extract version from binary name (e.g., recmev-v0.5.5-mac -> 0.5.5)
+    # Extract version from binary name (e.g., recmev-v0.5.6-mac -> 0.5.6)
     VERSION=$(echo $mac_binary | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' | sed 's/v//')
     if [ -z "$VERSION" ]; then
         print_error "Could not determine version from binary name"
