@@ -1,11 +1,4 @@
-# Changelog
-
-## [0.5.6]
-
-### Fixed
-
-- Fixed bug where `recmev logs` command would not find logs in custom log directories set via `recmev config --log-dir`
-- Improved log directory handling to ensure proper creation of custom log directories with parent paths
+# Full Changelog History
 
 ## [0.5.7]
 
@@ -15,3 +8,5 @@
 - Improved logs display format to show UTC timestamp
 - Added preservation of log files and configuration during uninstallation
 - Added detailed uninstallation summary and confirmation prompt
+
+// ... existing code ...
