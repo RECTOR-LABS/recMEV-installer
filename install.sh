@@ -2,7 +2,7 @@
 set -e
 
 # Hardcoded version
-VERSION="v0.5.6"
+VERSION="v0.6.2"
 
 # Check if running on supported platform
 check_platform() {
