@@ -1,13 +1,8 @@
 # Changelog
 
-## [0.5.5]
+## [0.5.6]
 
-### Added
+### Fixed
 
-- Added log tailing functionality with new `-f/--follow` flag for the `logs` command
-- Added `notify` dependency (v6.1.1) for file system monitoring
-
-### Changed
-
-- Enhanced log viewing command with real-time log following capability
-- Improved log display formatting and organization
+- Fixed bug where `recmev logs` command would not find logs in custom log directories set via `recmev config --log-dir`
+- Improved log directory handling to ensure proper creation of custom log directories with parent paths
