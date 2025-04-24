@@ -13,8 +13,8 @@ The installer places the binary in your user's local binary directory (`~/.local
 
 ## Components
 
-- `recmev-v0.5.5-mac`: macOS binary
-- `recmev-v0.5.5-linux`: Linux binary
+- `recmev-v0.5.6-mac`: macOS binary
+- `recmev-v0.5.6-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -24,7 +24,7 @@ The installer places the binary in your user's local binary directory (`~/.local
 Install recMEV with a single command:
 
 ```bash
-sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.5.5/install.sh)"
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.5.6/install.sh)"
 ```
 
 This method will:
@@ -53,7 +53,7 @@ mkdir -p ~/.local/bin
 export PATH="$HOME/.local/bin:$PATH"
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.5.5/recmev-v0.5.5-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.5.6/recmev-v0.5.6-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -65,7 +65,7 @@ mv recmev ~/.local/bin/recmev
 To install a specific version of recMEV, you'll need to modify the version number in the installation URL. For example, to install version v0.1.2:
 
 ```bash
-sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.1.2/install.sh)"
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.5.0/install.sh)"
 ```
 
 Note on URLs:
@@ -75,7 +75,8 @@ Note on URLs:
 
 Available versions:
 
-- v0.5.5 (latest)
+- v0.5.6 (latest)
+- v0.5.5
 - v0.5.4
 - v0.5.3
 - v0.5.1
@@ -131,7 +132,7 @@ The installation process includes several security measures:
 
 ## Version Information
 
-Current version: v0.5.5
+Current version: v0.5.6
 
 ## Development
 
