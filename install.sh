@@ -47,6 +47,20 @@ ensure_local_bin() {
     fi
 }
 
+# Function to display the installation completion banner
+display_banner() {
+    cat << "EOF"
+    ██████  ███████  ██████ ███    ███ ███████ ██    ██
+    ██   ██ ██      ██      ████  ████ ██      ██    ██
+    ██████  █████   ██      ██ ████ ██ █████   ██    ██
+    ██   ██ ██      ██      ██  ██  ██ ██       ██  ██ 
+    ██   ██ ███████  ██████ ██      ██ ███████   ████  
+                                                      
+         High-Performance Solana Arbitrage Engine
+                    Built by RECTOR with ❤️
+EOF
+}
+
 # Function to handle the installation process
 do_install() {
     REPO="RECTOR-LABS/recMEV-installer"
@@ -89,10 +103,14 @@ do_install() {
     cd - > /dev/null
     rm -rf "$TMP_DIR"
 
-    echo "✅ Installed successfully!"
-    echo "NOTE: If this is your first time using ~/.local/bin, you may need to restart your terminal"
-    echo "or run 'source ~/.bashrc' (or ~/.zshrc) to use recmev."
-    echo "Run 'recmev --help' to get started."
+    echo
+    display_banner
+    echo
+    echo "Installation complete. Run 'recmev --help' to get started."
+    if ! echo "$PATH" | grep -q "$HOME/.local/bin"; then
+        echo "NOTE: You may need to restart your terminal or source your shell profile"
+        echo "to use recmev from any directory."
+    fi
 }
 
 # Main script execution
