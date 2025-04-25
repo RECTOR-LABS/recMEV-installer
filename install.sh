@@ -123,8 +123,8 @@ do_install() {
     echo "📥 Downloading recMEV components..."
     if [ -n "$RECMEV_INSTALLER_LOCAL" ]; then
         # Local development installation
-        cp "/Users/rz/Documents/dev/recMEV-installer/$BINARY_NAME" "recmev"
-        cp "/Users/rz/Documents/dev/recMEV-installer/ai_engine.py" "ai_engine.py"
+        cp "./$BINARY_NAME" "recmev"
+        cp "./ai_engine.py" "ai_engine.py"
     else
         # Remote installation via curl from GitHub raw content
         curl -L "${BASE_URL}/${BINARY_NAME}" -o "recmev"
