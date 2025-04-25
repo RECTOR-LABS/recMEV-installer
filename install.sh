@@ -103,14 +103,19 @@ do_install() {
     cd - > /dev/null
     rm -rf "$TMP_DIR"
 
+    # Clear the line
+    printf "\033[2K"
+    
+    # Display completion banner and messages
     echo
     display_banner
     echo
-    echo "Installation complete. Run 'recmev --help' to get started."
+    echo "✨ Installation successful! recMEV ${VERSION} is ready."
     if ! echo "$PATH" | grep -q "$HOME/.local/bin"; then
         echo "NOTE: You may need to restart your terminal or source your shell profile"
         echo "to use recmev from any directory."
     fi
+    echo "Run 'recmev --help' to get started."
 }
 
 # Main script execution
