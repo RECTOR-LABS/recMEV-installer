@@ -2,7 +2,7 @@
 set -e
 
 # Hardcoded version
-VERSION="v0.9.1"
+VERSION="v0.9.2"
 
 # Python files directory
 PYTHON_DIR="$HOME/.local/lib/recmev"
@@ -68,21 +68,12 @@ check_python() {
 
 # Function to install Python dependencies
 install_python_deps() {
-    echo "📦 Installing Python dependencies..."
+    echo "📦 Setting up AI engine environment..."
     
-    # Create virtual environment if it doesn't exist
-    if [ ! -d "$PYTHON_DIR/venv" ]; then
-        python3 -m venv "$PYTHON_DIR/venv"
-    fi
+    # Create directory structure if it doesn't exist
+    mkdir -p "$PYTHON_DIR"
     
-    # Activate virtual environment
-    . "$PYTHON_DIR/venv/bin/activate"
-    
-    # Install dependencies
-    pip install --upgrade pip
-    pip install numpy pandas scikit-learn torch solana anchorpy optuna fastapi uvicorn websockets
-    
-    deactivate
+    # No need to install Python dependencies since we're using a compiled binary
 }
 
 # Function to display the installation completion banner
@@ -107,8 +98,9 @@ do_install() {
     # Check platform compatibility and set binary name
     check_platform
     
-    # Check Python installation
-    check_python
+    # Create directories
+    mkdir -p ~/.local/bin
+    mkdir -p "$PYTHON_DIR"
     
     echo "🔧 Installing recMEV ${VERSION} for $(uname -s)..."
 
@@ -124,15 +116,15 @@ do_install() {
     if [ -n "$RECMEV_INSTALLER_LOCAL" ]; then
         # Local development installation
         cp "./$BINARY_NAME" "recmev"
-        cp "./ai_engine.py" "ai_engine.py"
+        cp "./ai_engine" "ai_engine"
     else
         # Remote installation via curl from GitHub raw content
         curl -L "${BASE_URL}/${BINARY_NAME}" -o "recmev"
-        curl -L "${BASE_URL}/ai_engine.py" -o "ai_engine.py"
+        curl -L "${BASE_URL}/ai_engine-${OS,,}" -o "ai_engine"
     fi
 
     # Verify downloads were successful
-    if [ ! -s "recmev" ] || [ ! -s "ai_engine.py" ]; then
+    if [ ! -s "recmev" ] || [ ! -s "ai_engine" ]; then
         echo "❌ Download failed. Please check your internet connection and try again."
         exit 1
     fi
@@ -140,20 +132,12 @@ do_install() {
     # Install binary and Python components
     echo "📦 Installing recMEV components..."
     chmod +x recmev
+    chmod +x ai_engine
     mv recmev ~/.local/bin/recmev
-    mv ai_engine.py "$PYTHON_DIR/"
+    mv ai_engine "$PYTHON_DIR/"
     
     # Install Python dependencies
     install_python_deps
-
-    # Create launcher script
-    cat > ~/.local/bin/recmev-ai << "EOF"
-#!/bin/sh
-PYTHON_DIR="$HOME/.local/lib/recmev"
-. "$PYTHON_DIR/venv/bin/activate"
-python3 "$PYTHON_DIR/ai_engine.py" "$@"
-EOF
-    chmod +x ~/.local/bin/recmev-ai
 
     # Cleanup
     cd - > /dev/null
@@ -173,8 +157,8 @@ EOF
     fi
     echo
     echo "To get started:"
-    echo "1. Start the AI engine:    recmev-ai"
-    echo "2. In another terminal:    recmev --help"
+    echo "Run: recmev ai           # Start the AI engine"
+    echo "Run: recmev --help       # See available commands"
 }
 
 # Main script execution
