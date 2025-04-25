@@ -2,7 +2,7 @@
 set -e
 
 # Hardcoded version
-VERSION="v0.9.0"
+VERSION="v0.9.1"
 
 # Python files directory
 PYTHON_DIR="$HOME/.local/lib/recmev"
