@@ -4,63 +4,61 @@
 
 ### Added
 
-- New configuration system using TOML format
-- Enhanced uninstall command with --all flag for clean uninstallation
-- Improved error handling and context in configuration operations
-- Better user feedback during configuration initialization
+- New configuration system with improved structure
+- Enhanced uninstall command with --all flag
+- Better error messages and user feedback
+- Improved configuration initialization experience
 
 ### Changed
 
-- Migrated from config.env to config.toml format
-- Restructured configuration with nested configs for better organization
-- Enhanced logging output with file locations
-- Improved error messages and user guidance
+- Updated configuration format for better organization
+- Enhanced logging with clearer messages
+- Improved error messages and guidance
 
 ### Fixed
 
-- Configuration file handling and creation
-- Error handling in configuration operations
-- Log directory creation issues
+- Configuration file handling
+- Log directory creation
+- Various error handling improvements
 
 ### Removed
 
-- Legacy config.env support
-- Deprecated configuration methods
+- Legacy configuration support
+- Outdated configuration methods
 
 ## [0.6.2]
 
 ### Added
 
-- Platform-specific configuration file locations
-- Enhanced configuration management system
-- New configuration options for Solana, AI Engine, and IPC
-- Command-line interface for viewing and modifying configuration
-- Environment variable support for configuration overrides
+- Improved configuration management
+- New configuration options
+- Command-line interface for configuration
+- Environment variable support
 
 ### Changed
 
-- Migrated from JSON to .env format for configuration
-- Updated configuration file structure and organization
-- Enhanced configuration documentation in README
-- Improved error handling for configuration operations
+- Updated configuration format
+- Improved configuration structure
+- Enhanced documentation
+- Better error handling
 
 ### Fixed
 
-- Configuration file handling across different platforms
-- Configuration validation and error messages
-- Default configuration values and initialization
+- Configuration handling across platforms
+- Configuration validation
+- Default configuration handling
 
 ### Removed
 
-- Legacy JSON-based configuration system
+- Legacy configuration system
 
 ## [0.5.7]
 
 ### Changed
 
-- Enhanced uninstallation process with better user feedback and confirmation
-- Improved logs display format to show UTC timestamp
-- Added preservation of log files and configuration during uninstallation
-- Added detailed uninstallation summary and confirmation prompt
+- Improved uninstallation process
+- Enhanced log display
+- Better handling of configuration during uninstallation
+- Added uninstallation confirmations
 
 // ... existing code ...

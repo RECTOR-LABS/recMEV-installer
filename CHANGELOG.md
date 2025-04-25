@@ -4,25 +4,24 @@
 
 ### Added
 
-- New configuration system using TOML format
-- Enhanced uninstall command with --all flag for clean uninstallation
-- Improved error handling and context in configuration operations
-- Better user feedback during configuration initialization
+- New configuration system with improved structure
+- Enhanced uninstall command with --all flag
+- Better error messages and user feedback
+- Improved configuration initialization experience
 
 ### Changed
 
-- Migrated from config.env to config.toml format
-- Restructured configuration with nested configs for better organization
-- Enhanced logging output with file locations
-- Improved error messages and user guidance
+- Updated configuration format for better organization
+- Enhanced logging with clearer messages
+- Improved error messages and guidance
 
 ### Fixed
 
-- Configuration file handling and creation
-- Error handling in configuration operations
-- Log directory creation issues
+- Configuration file handling
+- Log directory creation
+- Various error handling improvements
 
 ### Removed
 
-- Legacy config.env support
-- Deprecated configuration methods
+- Legacy configuration support
+- Outdated configuration methods
