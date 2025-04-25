@@ -1,27 +1,25 @@
 # Changelog
 
-## [0.7.1]
+## [0.8.1]
 
 ### Added
 
-- New configuration system with improved structure
-- Enhanced uninstall command with --all flag
-- Better error messages and user feedback
-- Improved configuration initialization experience
+- New 'report' command for generating error reports and system diagnostics
+- System information collection in error reports
+- Automatic log collection in error reports
+- Report ID generation for better tracking
 
 ### Changed
 
-- Updated configuration format for better organization
-- Enhanced logging with clearer messages
-- Improved error messages and guidance
+- Improved CLI help message generation using Clap's built-in functionality
+- Enhanced error reporting workflow
+- Better organization of CLI command structure
 
 ### Fixed
 
-- Configuration file handling
-- Log directory creation
-- Various error handling improvements
+- Command-line help message formatting
+- CLI command organization and structure
 
 ### Removed
 
-- Legacy configuration support
-- Outdated configuration methods
+- Custom help message generation code in favor of Clap's built-in functionality

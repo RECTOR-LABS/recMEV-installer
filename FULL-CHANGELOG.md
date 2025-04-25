@@ -1,64 +1,90 @@
 # Full Changelog History
 
+## [0.8.1]
+
+### Added
+
+- New 'report' command for generating error reports and system diagnostics
+- System information collection in error reports
+- Automatic log collection in error reports
+- Report ID generation for better tracking
+
+### Changed
+
+- Improved CLI help message generation using Clap's built-in functionality
+- Enhanced error reporting workflow
+- Better organization of CLI command structure
+
+### Fixed
+
+- Command-line help message formatting
+- CLI command organization and structure
+
+### Removed
+
+- Custom help message generation code in favor of Clap's built-in functionality
+
 ## [0.7.1]
 
 ### Added
 
-- New configuration system with improved structure
-- Enhanced uninstall command with --all flag
-- Better error messages and user feedback
-- Improved configuration initialization experience
+- New configuration system using TOML format
+- Enhanced uninstall command with --all flag for clean uninstallation
+- Improved error handling and context in configuration operations
+- Better user feedback during configuration initialization
 
 ### Changed
 
-- Updated configuration format for better organization
-- Enhanced logging with clearer messages
-- Improved error messages and guidance
+- Migrated from config.env to config.toml format
+- Restructured configuration with nested configs for better organization
+- Enhanced logging output with file locations
+- Improved error messages and user guidance
 
 ### Fixed
 
-- Configuration file handling
-- Log directory creation
-- Various error handling improvements
+- Configuration file handling and creation
+- Error handling in configuration operations
+- Log directory creation issues
 
 ### Removed
 
-- Legacy configuration support
-- Outdated configuration methods
+- Legacy config.env support
+- Deprecated configuration methods
 
 ## [0.6.2]
 
 ### Added
 
-- Improved configuration management
-- New configuration options
-- Command-line interface for configuration
-- Environment variable support
+- Platform-specific configuration file locations
+- Enhanced configuration management system
+- New configuration options for Solana, AI Engine, and IPC
+- Command-line interface for viewing and modifying configuration
+- Environment variable support for configuration overrides
 
 ### Changed
 
-- Updated configuration format
-- Improved configuration structure
-- Enhanced documentation
-- Better error handling
+- Migrated from JSON to .env format for configuration
+- Updated configuration file structure and organization
+- Enhanced configuration documentation in README
+- Improved error handling for configuration operations
 
 ### Fixed
 
-- Configuration handling across platforms
-- Configuration validation
-- Default configuration handling
+- Configuration file handling across different platforms
+- Configuration validation and error messages
+- Default configuration values and initialization
 
 ### Removed
 
-- Legacy configuration system
+- Legacy JSON-based configuration system
 
 ## [0.5.7]
 
 ### Changed
 
-- Improved uninstallation process
-- Enhanced log display
-- Better handling of configuration during uninstallation
-- Added uninstallation confirmations
+- Enhanced uninstallation process with better user feedback and confirmation
+- Improved logs display format to show UTC timestamp
+- Added preservation of log files and configuration during uninstallation
+- Added detailed uninstallation summary and confirmation prompt
 
 // ... existing code ...
