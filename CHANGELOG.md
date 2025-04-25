@@ -1,25 +1,28 @@
 # Changelog
 
-## [0.8.1]
+## [0.9.0]
 
 ### Added
 
-- New 'report' command for generating error reports and system diagnostics
-- System information collection in error reports
-- Automatic log collection in error reports
-- Report ID generation for better tracking
+- Enhanced AI engine with confidence scoring for trade parameters
+- New parameter validation in trade execution
+- Additional trade parameters: confidence_score, max_price_impact, execution_deadline
+- Minimum profit threshold implementation for trade validation
+- Python file copying to installer directory during build process
 
 ### Changed
 
-- Improved CLI help message generation using Clap's built-in functionality
-- Enhanced error reporting workflow
-- Better organization of CLI command structure
+- Improved Makefile with verification step for build artifacts
+- Enhanced AI parameter documentation in Python code
+- Better error handling with specific rejection reasons in executor
+- Extended trade parameter struct with new fields for risk management
 
 ### Fixed
 
-- Command-line help message formatting
-- CLI command organization and structure
+- Build process to include Python files required for execution
+- Error handling in trade execution
+- Validation logic for parameter boundaries
 
 ### Removed
 
-- Custom help message generation code in favor of Clap's built-in functionality
+- Deprecated validation methods in executor logic
