@@ -9,12 +9,12 @@ recMEV installer package provides an automated way to install the recMEV binary 
 - macOS
 - Linux
 
-The installer places the binary in your user's local binary directory (`~/.local/bin`).
+The installer places the binary in the system binary directory (`/usr/local/bin`).
 
 ## Components
 
-- `recmev-v0.11.0-mac`: macOS binary
-- `recmev-v0.11.0-linux`: Linux binary
+- `recmev-v0.12.0-mac`: macOS binary
+- `recmev-v0.12.0-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -24,13 +24,12 @@ The installer places the binary in your user's local binary directory (`~/.local
 Install recMEV with a single command:
 
 ```bash
-sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.11.0/install.sh)"
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.12.0/install.sh)"
 ```
 
 This method will:
 
-- Create ~/.local/bin if it doesn't exist
-- Add ~/.local/bin to your PATH (if needed)
+- Create necessary configuration directories
 - Download and install the appropriate binary for your system
 
 ### Option 2: Direct Script Execution
@@ -46,23 +45,20 @@ If you've cloned the repository or downloaded the install script:
 For users who prefer to perform the installation steps manually:
 
 ```bash
-# Create local bin directory if it doesn't exist
-mkdir -p ~/.local/bin
-
-# Add to PATH if not already there (add this to your shell's rc file)
-export PATH="$HOME/.local/bin:$PATH"
+# Create config directory if it doesn't exist
+mkdir -p ~/.config/recmev
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.11.0/recmev-v0.11.0-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.12.0/recmev-v0.12.0-OS -o recmev
 
 # Install binary
 chmod +x recmev
-mv recmev ~/.local/bin/recmev
+sudo mv recmev /usr/local/bin/recmev
 ```
 
 ### Installing Specific Versions
 
-To install a specific version of recMEV, you'll need to modify the version number in the installation URL. For example, to install version v0.1.2:
+To install a specific version of recMEV, you'll need to modify the version number in the installation URL. For example, to install version v0.5.0:
 
 ```bash
 sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.5.0/install.sh)"
@@ -75,7 +71,8 @@ Note on URLs:
 
 Available versions:
 
-- v0.11.0 (latest)
+- v0.12.0 (latest) - Jupiter DEX integration
+- v0.11.0 - Pure Rust TLS implementation
 - v0.9.4
 - v0.9.2
 - v0.9.1
@@ -125,22 +122,24 @@ After installation, verify that recMEV was installed correctly:
 recmev --help
 ```
 
-Note: If you've just added ~/.local/bin to your PATH, you'll need to either:
-
-- Restart your terminal
-- Run `source ~/.bashrc` (or `~/.zshrc` for zsh users)
-
 ## Security
 
 The installation process includes several security measures:
 
 1. HTTPS downloads from trusted sources
 2. Secure temporary directory handling
-3. User-space installation (no sudo required)
+3. System-wide installation with proper permissions
 
 ## Version Information
 
-Current version: v0.11.0
+Current version: v0.12.0
+
+### New in v0.12.0
+
+- Jupiter DEX integration for token swaps
+- New swap command: `recmev swap <input_token> <output_token> <amount>`
+- Improved configuration options for swap parameters
+- Enhanced documentation and usage examples
 
 ## Development
 
@@ -175,9 +174,8 @@ Common issues and solutions:
    - Verify your system is supported (Linux or macOS)
 
 3. Binary not found after installation
-   - Ensure ~/.local/bin is in your PATH
+   - Ensure /usr/local/bin is in your PATH
    - Try running `echo $PATH` to verify
-   - Source your shell's rc file or restart your terminal
    - Try running `which recmev` to locate the binary
 
 ## Support
