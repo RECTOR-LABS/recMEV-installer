@@ -2,10 +2,7 @@
 set -e
 
 # Hardcoded version
-VERSION="v0.9.2"
-
-# Python files directory
-PYTHON_DIR="$HOME/.local/lib/recmev"
+VERSION="v0.9.4"
 
 # Check if running on supported platform
 check_platform() {
@@ -25,7 +22,6 @@ check_platform() {
 ensure_local_bin() {
     # Create ~/.local/bin if it doesn't exist
     mkdir -p ~/.local/bin
-    mkdir -p "$PYTHON_DIR"
 
     # Add to PATH if not already there
     if ! echo "$PATH" | grep -q "$HOME/.local/bin"; then
@@ -49,31 +45,6 @@ ensure_local_bin() {
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$PROFILE_FILE"
         echo "Please restart your terminal or run 'source $PROFILE_FILE' to update your PATH"
     fi
-}
-
-# Function to check Python installation
-check_python() {
-    if ! command -v python3 >/dev/null 2>&1; then
-        echo "❌ Python 3 is required but not found. Please install Python 3.8 or later."
-        exit 1
-    fi
-
-    # Check Python version
-    PY_VERSION=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
-    if [ "$(echo "$PY_VERSION" | cut -d. -f1)" -lt 3 ] || [ "$(echo "$PY_VERSION" | cut -d. -f2)" -lt 8 ]; then
-        echo "❌ Python 3.8 or later is required. Found version $PY_VERSION"
-        exit 1
-    fi
-}
-
-# Function to install Python dependencies
-install_python_deps() {
-    echo "📦 Setting up AI engine environment..."
-    
-    # Create directory structure if it doesn't exist
-    mkdir -p "$PYTHON_DIR"
-    
-    # No need to install Python dependencies since we're using a compiled binary
 }
 
 # Function to display the installation completion banner
@@ -100,7 +71,6 @@ do_install() {
     
     # Create directories
     mkdir -p ~/.local/bin
-    mkdir -p "$PYTHON_DIR"
     
     echo "🔧 Installing recMEV ${VERSION} for $(uname -s)..."
 
@@ -116,28 +86,21 @@ do_install() {
     if [ -n "$RECMEV_INSTALLER_LOCAL" ]; then
         # Local development installation
         cp "./$BINARY_NAME" "recmev"
-        cp "./ai_engine" "ai_engine"
     else
         # Remote installation via curl from GitHub raw content
         curl -L "${BASE_URL}/${BINARY_NAME}" -o "recmev"
-        curl -L "${BASE_URL}/ai_engine-${OS,,}" -o "ai_engine"
     fi
 
     # Verify downloads were successful
-    if [ ! -s "recmev" ] || [ ! -s "ai_engine" ]; then
+    if [ ! -s "recmev" ]; then
         echo "❌ Download failed. Please check your internet connection and try again."
         exit 1
     fi
 
-    # Install binary and Python components
+    # Install binary
     echo "📦 Installing recMEV components..."
     chmod +x recmev
-    chmod +x ai_engine
     mv recmev ~/.local/bin/recmev
-    mv ai_engine "$PYTHON_DIR/"
-    
-    # Install Python dependencies
-    install_python_deps
 
     # Cleanup
     cd - > /dev/null
@@ -157,7 +120,6 @@ do_install() {
     fi
     echo
     echo "To get started:"
-    echo "Run: recmev ai           # Start the AI engine"
     echo "Run: recmev --help       # See available commands"
 }
 

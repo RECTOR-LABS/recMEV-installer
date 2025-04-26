@@ -1,18 +1,26 @@
 # Changelog
 
-## [0.9.2]
+## [0.9.4]
 
 ### Added
 
-- Version update to 0.9.2
-- Additional build process documentation
+- Enhanced build process documentation
+- Improved release verification checks
 
 ### Changed
 
-- Improved version management in build process
-- Enhanced documentation consistency across repositories
+- Removed AI engine components
+- Simplified build process and dependencies
+- Updated documentation to reflect core functionality
+- Streamlined Makefile by removing Python-related tasks
 
 ### Fixed
 
-- Version consistency between documentation and code
+- Documentation consistency across repositories
 - Build process verification checks
+
+### Removed
+
+- AI engine components and dependencies
+- Python dependency requirements
+- IPC communication between Rust and Python components
