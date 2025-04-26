@@ -4,6 +4,7 @@
 
 ### Added
 
+- Pure Rust TLS implementation using rustls-tls
 - New 'Guide' command for beginner-friendly instructions
 - New 'About' command with detailed product information
 - Improved text formatting with textwrap for better readability
@@ -11,6 +12,8 @@
 
 ### Changed
 
+- Modified reqwest dependency to use rustls-tls instead of OpenSSL
+- Improved cross-compilation support by removing native dependencies
 - Updated Cargo.toml dependencies with more flexible version requirements
 - Improved README.md with documentation for new guide command
 - Enhanced CLI commands with better organization
@@ -18,6 +21,7 @@
 
 ### Fixed
 
+- Resolved OpenSSL dependency issues during Linux builds
 - Documentation consistency across repositories
 - Command-line interface help messages and descriptions
 
