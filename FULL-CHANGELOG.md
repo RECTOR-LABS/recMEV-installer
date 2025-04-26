@@ -1,5 +1,30 @@
 # Full Changelog History
 
+## [0.11.0]
+
+### Added
+
+- New 'Guide' command for beginner-friendly instructions
+- New 'About' command with detailed product information
+- Improved text formatting with textwrap for better readability
+- Enhanced UI with ASCII banner and framed text displays
+
+### Changed
+
+- Updated Cargo.toml dependencies with more flexible version requirements
+- Improved README.md with documentation for new guide command
+- Enhanced CLI commands with better organization
+- Restructured dependency specifications for better maintainability
+
+### Fixed
+
+- Documentation consistency across repositories
+- Command-line interface help messages and descriptions
+
+### Removed
+
+- Specific version pinning for most dependencies in favor of more flexible requirements
+
 ## [0.9.4]
 
 ### Added
@@ -172,5 +197,3 @@
 - Improved logs display format to show UTC timestamp
 - Added preservation of log files and configuration during uninstallation
 - Added detailed uninstallation summary and confirmation prompt
-
-// ... existing code ...
