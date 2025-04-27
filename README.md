@@ -13,8 +13,8 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 
 ## Components
 
-- `recmev-v0.12.0-mac`: macOS binary
-- `recmev-v0.12.0-linux`: Linux binary
+- `recmev-v0.13.4-mac`: macOS binary
+- `recmev-v0.13.4-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -24,7 +24,7 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 Install recMEV with a single command:
 
 ```bash
-sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.12.0/install.sh)"
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.13.4/install.sh)"
 ```
 
 This method will:
@@ -49,7 +49,7 @@ For users who prefer to perform the installation steps manually:
 mkdir -p ~/.config/recmev
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.12.0/recmev-v0.12.0-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.13.4/recmev-v0.13.4-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -71,7 +71,8 @@ Note on URLs:
 
 Available versions:
 
-- v0.12.0 (latest) - Jupiter DEX integration
+- v0.13.4 (latest) - Enhanced DEX integration and performance improvements
+- v0.12.0 - Jupiter DEX integration
 - v0.11.0 - Pure Rust TLS implementation
 - v0.9.4
 - v0.9.2
@@ -132,14 +133,15 @@ The installation process includes several security measures:
 
 ## Version Information
 
-Current version: v0.12.0
+Current version: v0.13.4
 
-### New in v0.12.0
+### New in v0.13.4
 
-- Jupiter DEX integration for token swaps
-- New swap command: `recmev swap <input_token> <output_token> <amount>`
-- Improved configuration options for swap parameters
-- Enhanced documentation and usage examples
+- New features for improved DEX integration
+- Enhanced error handling for network transactions
+- Optimized transaction submission process
+- Updated documentation with latest commands
+- Various bug fixes and performance improvements
 
 ## Development
 
