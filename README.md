@@ -13,8 +13,8 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 
 ## Components
 
-- `recmev-v0.13.8-mac`: macOS binary
-- `recmev-v0.13.8-linux`: Linux binary
+- `recmev-v0.13.9-mac`: macOS binary
+- `recmev-v0.13.9-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -49,7 +49,7 @@ For users who prefer to perform the installation steps manually:
 mkdir -p ~/.config/recmev
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.13.8/recmev-v0.13.8-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.13.9/recmev-v0.13.9-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -71,7 +71,8 @@ Note on URLs:
 
 Available versions:
 
-- v0.13.8 (latest) - Bug fixes and stability improvements
+- v0.13.9 (latest) - Bug fixes and stability improvements
+- v0.13.8 - Bug fixes and stability improvements
 - v0.13.5 - Jupiter DEX integration for token swaps
 - v0.13.4 - Enhanced DEX integration and performance improvements
 - v0.12.0 - Jupiter DEX integration
@@ -150,12 +151,12 @@ The installation process includes several security measures:
 
 ## Version Information
 
-Current version: v0.13.8
+Current version: v0.13.9
 
-### New in v0.13.8
+### New in v0.13.9
 
-- Various small bug fixes and stability improvements
-- Fixed minor issues with config handling
+- Various bug fixes and stability improvements
+- Updated dependencies for better performance
 
 ## Development
 
