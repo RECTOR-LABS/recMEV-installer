@@ -76,34 +76,34 @@ Available versions:
 - v0.13.4 - Enhanced DEX integration and performance improvements
 - v0.12.0 - Jupiter DEX integration
 - v0.11.0 - Pure Rust TLS implementation
-- v0.9.4
-- v0.9.2
-- v0.9.1
-- v0.9.0
-- v0.8.1
-- v0.7.1
-- v0.6.2
-- v0.5.6
-- v0.5.5
-- v0.5.4
-- v0.5.3
-- v0.5.1
-- v0.5.0
-- v0.4.0
-- v0.3.5
-- v0.3.4
-- v0.3.3
-- v0.3.2
-- v0.3.1
-- v0.2.4
-- v0.2.3
-- v0.2.2
-- v0.2.1
-- v0.2.0
-- v0.1.3
-- v0.1.2
-- v0.1.1
-- v0.1.0
+- v0.9.4 - Bug fixes and stability improvements
+- v0.9.2 - Enhanced error handling and reporting
+- v0.9.1 - Transaction optimization
+- v0.9.0 - Major performance improvements
+- v0.8.1 - Configuration system update
+- v0.7.1 - Transaction batch processing
+- v0.6.2 - Stability improvements and bug fixes
+- v0.5.6 - Blockchain transaction optimizations
+- v0.5.5 - Enhanced monitoring capabilities
+- v0.5.4 - Config file format updates
+- v0.5.3 - Performance improvements for large transactions
+- v0.5.1 - CLI enhancement for readability
+- v0.5.0 - First stable release with core functionality
+- v0.4.0 - Transaction subsystem complete
+- v0.3.5 - Transaction signing improvements
+- v0.3.4 - Enhanced logging capabilities
+- v0.3.3 - Bug fixes and stability improvements
+- v0.3.2 - Configuration enhancements
+- v0.3.1 - Improved error messages
+- v0.2.4 - CLI interface improvements
+- v0.2.3 - Bug fixes and performance enhancements
+- v0.2.2 - Configuration system updates
+- v0.2.1 - Minor bug fixes and improvements
+- v0.2.0 - Redesigned architecture
+- v0.1.3 - Initial transaction support
+- v0.1.2 - Basic CLI functionality
+- v0.1.1 - Bug fixes and improvements
+- v0.1.0 - Initial alpha release
 
 You can find all available versions on our [GitHub releases page](https://github.com/RECTOR-LABS/recMEV-installer/releases).
 
