@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.13.8]
+
+### Changed
+
+- Version bump to 0.13.8 for release
+- See below for previous changes
+
+## [0.13.7]
+
+### Fixed
+
+- Various small bug fixes and stability improvements
+- Fixed minor issues with config handling
+
 ## [0.13.5]
 
 ### Added
