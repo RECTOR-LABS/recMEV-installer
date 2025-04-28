@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.13.5]
+
+### Added
+
+- Jupiter DEX integration for token swaps
+- New `swap` command for executing token swaps
+- Configuration options for Jupiter swap parameters
+- Enhanced config command with Jupiter swap settings
+
+### Changed
+
+- Improved config output display with better organization
+- Updated configuration storage with Jupiter DEX settings
+- Enhanced documentation to reflect new features
+
+### Fixed
+
+- Various bug fixes and stability improvements
+- Fixed configuration save logic
+
 ## [0.13.4]
 
 ### Added

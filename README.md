@@ -13,8 +13,8 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 
 ## Components
 
-- `recmev-v0.13.4-mac`: macOS binary
-- `recmev-v0.13.4-linux`: Linux binary
+- `recmev-v0.13.5-mac`: macOS binary
+- `recmev-v0.13.5-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -24,7 +24,7 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 Install recMEV with a single command:
 
 ```bash
-sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.13.4/install.sh)"
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.13.5/install.sh)"
 ```
 
 This method will:
@@ -49,7 +49,7 @@ For users who prefer to perform the installation steps manually:
 mkdir -p ~/.config/recmev
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.13.4/recmev-v0.13.4-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.13.5/recmev-v0.13.5-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -71,7 +71,8 @@ Note on URLs:
 
 Available versions:
 
-- v0.13.4 (latest) - Enhanced DEX integration and performance improvements
+- v0.13.5 (latest) - Jupiter DEX integration for token swaps
+- v0.13.4 - Enhanced DEX integration and performance improvements
 - v0.12.0 - Jupiter DEX integration
 - v0.11.0 - Pure Rust TLS implementation
 - v0.9.4
@@ -107,13 +108,28 @@ You can find all available versions on our [GitHub releases page](https://github
 
 ## Uninstallation
 
-To uninstall recMEV, simply run:
+You can uninstall recMEV using the following commands:
 
 ```bash
+# Basic uninstallation (keeps logs and config)
 recmev uninstall
+
+# Full uninstallation (removes all data including logs and config)
+recmev uninstall --all
 ```
 
-This command will remove recMEV from your system.
+**Platform-specific uninstallation notes:**
+
+- **Both Linux and macOS**: Files in system directories like `/usr/local/bin` require sudo privileges to remove
+- The uninstall command will automatically attempt to use sudo if available without password
+- If automatic sudo fails, you'll need to use explicit sudo:
+
+```bash
+# For Linux and macOS
+sudo recmev uninstall --all
+```
+
+**macOS note:** On macOS, the system may prompt for your password when attempting to remove files from `/usr/local/bin`. This is normal behavior, as these directories are protected by the system.
 
 ## Post-Installation Verification
 
@@ -133,15 +149,14 @@ The installation process includes several security measures:
 
 ## Version Information
 
-Current version: v0.13.4
+Current version: v0.13.5
 
-### New in v0.13.4
+### New in v0.13.5
 
-- New features for improved DEX integration
-- Enhanced error handling for network transactions
-- Optimized transaction submission process
-- Updated documentation with latest commands
-- Various bug fixes and performance improvements
+- Jupiter DEX integration for token swaps
+- New `swap` command for executing token swaps
+- Configuration options for Jupiter swap parameters
+- Enhanced config command with Jupiter swap settings
 
 ## Development
 
