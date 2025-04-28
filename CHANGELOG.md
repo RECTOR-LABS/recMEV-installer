@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.13.9]
+
+### Changed
+
+- Version bump to 0.13.9 for release
+- Updated dependencies for better performance
+
+### Fixed
+
+- Various bug fixes and stability improvements
+
 ## [0.13.8]
 
 ### Changed
