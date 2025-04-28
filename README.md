@@ -13,8 +13,8 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 
 ## Components
 
-- `recmev-v0.13.5-mac`: macOS binary
-- `recmev-v0.13.5-linux`: Linux binary
+- `recmev-v0.13.7-mac`: macOS binary
+- `recmev-v0.13.7-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -24,7 +24,7 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 Install recMEV with a single command:
 
 ```bash
-sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.13.5/install.sh)"
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/install.sh)"
 ```
 
 This method will:
@@ -49,7 +49,7 @@ For users who prefer to perform the installation steps manually:
 mkdir -p ~/.config/recmev
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.13.5/recmev-v0.13.5-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.13.7/recmev-v0.13.7-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -71,7 +71,8 @@ Note on URLs:
 
 Available versions:
 
-- v0.13.5 (latest) - Jupiter DEX integration for token swaps
+- v0.13.7 (latest) - Bug fixes and stability improvements
+- v0.13.5 - Jupiter DEX integration for token swaps
 - v0.13.4 - Enhanced DEX integration and performance improvements
 - v0.12.0 - Jupiter DEX integration
 - v0.11.0 - Pure Rust TLS implementation
@@ -149,14 +150,12 @@ The installation process includes several security measures:
 
 ## Version Information
 
-Current version: v0.13.5
+Current version: v0.13.7
 
-### New in v0.13.5
+### New in v0.13.7
 
-- Jupiter DEX integration for token swaps
-- New `swap` command for executing token swaps
-- Configuration options for Jupiter swap parameters
-- Enhanced config command with Jupiter swap settings
+- Various small bug fixes and stability improvements
+- Fixed minor issues with config handling
 
 ## Development
 
