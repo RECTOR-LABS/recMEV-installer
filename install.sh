@@ -2,7 +2,7 @@
 set -e
 
 # Hardcoded version
-VERSION="v0.13.9"
+VERSION="v0.13.10"
 
 # Check if running on supported platform
 check_platform() {
@@ -37,7 +37,7 @@ display_banner() {
     ██   ██ ███████  ██████ ██      ██ ███████   ████  
                                                       
          High-Performance Solana Arbitrage Engine
-                    Built by RECTOR with ❤️
+                Built by RECTOR with ❤️
 EOF
 }
 
