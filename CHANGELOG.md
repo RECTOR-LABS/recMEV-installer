@@ -1,5 +1,16 @@
 # What's Changed
 
+## [0.13.10]
+
+### Changed
+
+- Version bump to 0.13.10 for release
+- Enhanced stability and performance
+
+### Fixed
+
+- Various bug fixes and code improvements
+
 ## [0.13.9]
 
 ### Changed
