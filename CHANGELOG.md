@@ -1,5 +1,16 @@
 # What's Changed
 
+## [0.14.4]
+
+### Changed
+
+- Version bump to 0.14.4 for release
+- Enhanced stability and performance improvements
+
+### Fixed
+
+- Various bug fixes and code optimizations
+
 ## [0.13.10]
 
 ### Changed
@@ -226,27 +237,28 @@
 
 ### Added
 
-- New configuration system with improved structure
-- Enhanced uninstall command with --all flag
-- Better error messages and user feedback
-- Improved configuration initialization experience
+- New configuration system using TOML format
+- Enhanced uninstall command with --all flag for clean uninstallation
+- Improved error handling and context in configuration operations
+- Better user feedback during configuration initialization
 
 ### Changed
 
-- Updated configuration format for better organization
-- Enhanced logging with clearer messages
-- Improved error messages and guidance
+- Migrated from config.env to config.toml format
+- Restructured configuration with nested configs for better organization
+- Enhanced logging output with file locations
+- Improved error messages and user guidance
 
 ### Fixed
 
-- Configuration file handling
-- Log directory creation
-- Various error handling improvements
+- Configuration file handling and creation
+- Error handling in configuration operations
+- Log directory creation issues
 
 ### Removed
 
-- Legacy configuration support
-- Outdated configuration methods
+- Legacy config.env support
+- Deprecated configuration methods
 
 ## [0.6.2]
 
