@@ -1,5 +1,16 @@
 # What's Changed
 
+## [0.15.4]
+
+### Changed
+
+- Version bump to 0.15.4 for release
+- Enhanced stability and performance improvements
+
+### Fixed
+
+- Various bug fixes and code optimizations
+
 ## [0.14.4]
 
 ### Changed

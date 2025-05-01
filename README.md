@@ -153,7 +153,7 @@ The installation process includes several security measures:
 
 ## Version Information
 
-Current version: v0.14.4
+Current version: v0.15.4
 
 ### New in v0.14.4
 
@@ -196,6 +196,53 @@ Common issues and solutions:
    - Ensure /usr/local/bin is in your PATH
    - Try running `echo $PATH` to verify
    - Try running `which recmev` to locate the binary
+
+## Shell Completions
+
+recMEV supports shell completions for Bash, Zsh, and Fish shells. The installer automatically:
+
+1. Downloads completion scripts to `~/.config/recmev/completion/`
+2. Attempts to automatically configure completions for your current shell
+
+### Manual Setup
+
+If automatic setup fails or if you want to manually enable completions:
+
+#### Bash
+
+Add the following to your `~/.bashrc` or `~/.bash_profile`:
+
+```bash
+[ -f ~/.config/recmev/completion/recmev.bash ] && source ~/.config/recmev/completion/recmev.bash
+```
+
+#### Zsh
+
+Add the following to your `~/.zshrc`:
+
+```zsh
+# Add recmev completions dir to fpath
+fpath=(~/.config/recmev/completion $fpath)
+autoload -U compinit && compinit
+```
+
+#### Fish
+
+Link the completion file to your Fish completions directory:
+
+```fish
+ln -sf ~/.config/recmev/completion/recmev.fish ~/.config/fish/completions/recmev.fish
+```
+
+### Testing Completions
+
+After enabling completions and restarting your shell (or sourcing your profile), you can test them by typing:
+
+```bash
+recmev <TAB>
+```
+
+This should display available commands and options.
 
 ## Support
 
