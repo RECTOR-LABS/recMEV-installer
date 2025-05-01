@@ -13,8 +13,8 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 
 ## Components
 
-- `recmev-v0.15.6-mac`: macOS binary
-- `recmev-v0.15.6-linux`: Linux binary
+- `recmev-v0.15.7-mac`: macOS binary
+- `recmev-v0.15.7-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -49,7 +49,7 @@ For users who prefer to perform the installation steps manually:
 mkdir -p ~/.config/recmev
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.15.6/recmev-v0.15.6-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.15.7/recmev-v0.15.7-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -71,7 +71,8 @@ Note on URLs:
 
 Available versions:
 
-- v0.15.6 (latest) - Enhanced stability and performance improvements
+- v0.15.7 (latest) - Enhanced stability and performance improvements
+- v0.15.6 - Enhanced stability and performance improvements
 - v0.15.4 - Shell completion support and version management
 - v0.13.10 - Enhanced stability and performance improvements
 - v0.13.9 - Bug fixes and stability improvements
@@ -136,6 +137,49 @@ sudo recmev uninstall --all
 
 **macOS note:** On macOS, the system may prompt for your password when attempting to remove files from `/usr/local/bin`. This is normal behavior, as these directories are protected by the system.
 
+### Manual Uninstallation
+
+If you need to manually uninstall recMEV, follow these steps:
+
+1. Remove the binary:
+
+```bash
+sudo rm /usr/local/bin/recmev
+```
+
+2. Remove configuration files (optional):
+
+```bash
+rm -rf ~/.config/recmev
+```
+
+3. Remove log files (optional):
+
+```bash
+rm -rf ~/.local/share/recmev/logs
+```
+
+4. Remove cache files (optional):
+
+```bash
+rm -rf ~/.cache/recmev
+```
+
+5. Remove shell completions (if installed):
+
+```bash
+# Bash
+rm ~/.config/recmev/completion/recmev.bash
+
+# Zsh
+rm ~/.config/recmev/completion/recmev.zsh
+
+# Fish
+rm ~/.config/fish/completions/recmev.fish
+```
+
+**Note:** The exact paths may vary slightly depending on your system configuration and installation method.
+
 ## Post-Installation Verification
 
 After installation, verify that recMEV was installed correctly:
@@ -154,9 +198,9 @@ The installation process includes several security measures:
 
 ## Version Information
 
-Current version: v0.15.6
+Current version: v0.15.7
 
-### New in v0.15.6
+### New in v0.15.7
 
 - Enhanced stability and performance improvements
 - Updated dependencies for better security
@@ -203,10 +247,20 @@ Common issues and solutions:
 
 recMEV supports shell completions for Bash, Zsh, and Fish shells. The installer automatically:
 
-1. Downloads completion scripts to `~/.config/recmev/completion/`
-2. Attempts to automatically configure completions for your current shell
+1. Generates completion scripts using the `completions` command
+2. Stores them in `~/.config/recmev/completion/`
+3. Attempts to automatically configure completions for your current shell
 
-### Manual Setup
+### Manual Generation and Setup
+
+You can also manually generate completion scripts using the `completions` command:
+
+```bash
+# Generate completions for your preferred shell
+recmev completions bash                          # Generate to current directory
+recmev completions zsh -o ~/.zsh/completions     # Generate to specific directory
+recmev completions fish -o ~/.config/fish/completions
+```
 
 If automatic setup fails or if you want to manually enable completions:
 

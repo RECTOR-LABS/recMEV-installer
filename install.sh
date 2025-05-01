@@ -2,7 +2,7 @@
 set -e
 
 # Hardcoded version
-VERSION="v0.15.6"
+VERSION="v0.15.7"
 
 # Check if running on supported platform
 check_platform() {
@@ -32,37 +32,30 @@ install_completions() {
     COMPLETION_DIR="$HOME/.config/recmev/completion"
     mkdir -p "$COMPLETION_DIR"
     
-    echo "📥 Downloading shell completions..."
+    echo "📥 Generating shell completions..."
     
-    # Download shell completion scripts
-    if [ -n "$RECMEV_INSTALLER_LOCAL" ]; then
-        # Local development installation
-        if [ -f "./completions/recmev.bash" ]; then
-            cp "./completions/recmev.bash" "$COMPLETION_DIR/recmev.bash" && BASH_OK=1
-            cp "./completions/recmev.zsh" "$COMPLETION_DIR/_recmev" && ZSH_OK=1
-            cp "./completions/recmev.fish" "$COMPLETION_DIR/recmev.fish" && FISH_OK=1
-        else
-            echo "⚠️  Local completion files not found. Shell completions will not be installed."
-        fi
-    else
-        # Remote installation via curl from GitHub
-        curl -s -L "${BASE_URL}/completions/recmev.bash" -o "$COMPLETION_DIR/recmev.bash" && BASH_OK=1 || \
-            echo "⚠️  Bash completion download failed."
-        curl -s -L "${BASE_URL}/completions/recmev.zsh" -o "$COMPLETION_DIR/_recmev" && ZSH_OK=1 || \
-            echo "⚠️  Zsh completion download failed."
-        curl -s -L "${BASE_URL}/completions/recmev.fish" -o "$COMPLETION_DIR/recmev.fish" && FISH_OK=1 || \
-            echo "⚠️  Fish completion download failed."
-    fi
+    # Generate shell completions using the recmev binary
+    echo "Generating Bash completions..."
+    "${INSTALL_DIR}/recmev" completions bash -o "$COMPLETION_DIR" && BASH_OK=1 || \
+        echo "⚠️  Bash completion generation failed."
+    
+    echo "Generating Zsh completions..."
+    "${INSTALL_DIR}/recmev" completions zsh -o "$COMPLETION_DIR" && ZSH_OK=1 || \
+        echo "⚠️  Zsh completion generation failed."
+    
+    echo "Generating Fish completions..."
+    "${INSTALL_DIR}/recmev" completions fish -o "$COMPLETION_DIR" && FISH_OK=1 || \
+        echo "⚠️  Fish completion generation failed."
     
     # Make sure files have proper permissions
     chmod 644 "$COMPLETION_DIR"/* 2>/dev/null || true
     
-    # Check if any completions were downloaded successfully
+    # Check if any completions were generated successfully
     if [ -f "$COMPLETION_DIR/recmev.bash" ] || [ -f "$COMPLETION_DIR/_recmev" ] || [ -f "$COMPLETION_DIR/recmev.fish" ]; then
-        echo "✅ Shell completions downloaded successfully."
+        echo "✅ Shell completions generated successfully."
         COMPLETIONS_AVAILABLE=1
     else
-        echo "⚠️  No shell completions were downloaded successfully."
+        echo "⚠️  No shell completions were generated successfully."
         COMPLETIONS_AVAILABLE=0
     fi
 }
