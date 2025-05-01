@@ -2,14 +2,33 @@
 
 ## [0.15.4]
 
+### Added
+
+- New `install` command for version management:
+  - Install specific versions with `recmev install --version <VERSION>`
+  - List available versions with `recmev install --list`
+  - View version history with release dates
+  - Version caching for handling GitHub API rate limits
+- Shell completion support for Bash, Zsh, and Fish shells
+- Automatic shell integration during installation
+- Enhanced version management with detailed version listing
+- New shell completion files: recmev.bash, recmev.fish, and recmev.zsh
+
 ### Changed
 
 - Version bump to 0.15.4 for release
 - Enhanced stability and performance improvements
+- Improved UI formatting in swap command output
+- Better error handling for GitHub API interactions
+- Enhanced installation process with better feedback
+- Updated documentation with shell completion setup guides
+- Improved installer script with automatic shell detection
 
 ### Fixed
 
 - Various bug fixes and code optimizations
+- Minor display formatting issues
+- Cross-shell compatibility for completions
 
 ## [0.14.4]
 

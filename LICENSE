@@ -1,21 +1,28 @@
-MIT License
+recMEV Non-Commercial License v1.0
+Copyright (c) 2025 RECTOR LABS
 
-Copyright (c) 2024 recMEV
+Permission is hereby granted to any person obtaining a copy of this software and associated documentation files (the "Software"), to use, run, and modify the Software for **personal, research, or educational purposes only**, subject to the following conditions:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. **Attribution Required**  
+   Any use of the Software must include clear and visible attribution to the original author:
+   RECTOR LABS (https://rectorspace.com)
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. **No Commercial Use**  
+   The Software may not be used, either in whole or in part, for any commercial purposes. This includes, but is not limited to:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+   - Selling the Software or any derivative work.
+   - Using the Software to provide paid services.
+   - Packaging the Software within a commercial product or SaaS platform.
+
+3. **No Ownership Claims**  
+   You may not claim ownership or authorship of the Software or any derivative version thereof.
+
+4. **No Branding Modification**  
+   The name "recMEV" must not be removed, altered, or replaced in any distribution, fork, or modified version without prior written permission from the original author.
+
+5. **No Redistribution Without Permission**  
+   Redistribution of the Software, modified or unmodified, is not allowed without prior written permission.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE.
+
+For licensing inquiries or commercial usage permission, please contact: labs@rectorspace.com

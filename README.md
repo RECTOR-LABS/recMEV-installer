@@ -254,4 +254,4 @@ For issues, feature requests, or contributions:
 
 ## License
 
-MIT
+recMEV Non-Commercial License v1.0. For personal, research, or educational purposes only. See LICENSE file for details.
