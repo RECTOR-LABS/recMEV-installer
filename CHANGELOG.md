@@ -1,5 +1,17 @@
 # What's Changed
 
+## [0.15.6]
+
+### Changed
+
+- Version bump to 0.15.6 for release
+- Enhanced stability and performance improvements
+- Updated dependencies for better security and performance
+
+### Fixed
+
+- Various bug fixes and code optimizations
+
 ## [0.15.4]
 
 ### Added
