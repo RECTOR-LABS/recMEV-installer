@@ -1,5 +1,47 @@
 # What's Changed
 
+## [0.15.9]
+
+### Added
+
+- Enhanced config command with improved security features:
+  - New `--clear-key` option to completely remove wallet keys
+  - New `--log-path` option to display current log file path
+  - New `--log-status` option showing detailed logging information
+- Advanced logging system with comprehensive error reporting:
+  - Context-aware error display for better troubleshooting
+  - Additional fields for ERROR and WARN log levels
+  - Transaction details included in relevant log entries
+- Improved wallet security with encryption enhancements:
+  - Streamlined key encryption workflow
+  - Better handling of key formats and validation
+  - Multiple key file format support
+
+### Changed
+
+- Redesigned config command interface:
+  - Removed `--log-dir` option in favor of automatic management
+  - Removed `--password` option for better security practices
+  - Added validation for configuration changes
+  - Improved user feedback for configuration updates
+- Enhanced log command display format:
+  - Better formatting for improved readability
+  - Color-coded log levels for easier parsing
+  - Additional help text for common log operations
+- Improved guide command with more comprehensive information:
+  - Detailed command descriptions and examples
+  - Organized sections for better navigation
+  - Tips and best practices for common operations
+- Expanded user documentation throughout the application
+
+### Fixed
+
+- Improved error handling for configuration operations
+- Better validation for wallet key file formats
+- Enhanced display of configuration options
+- Fixed various minor UI formatting issues
+- Streamlined help text for better clarity
+
 ## [0.15.7]
 
 ### Changed
