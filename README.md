@@ -13,8 +13,8 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 
 ## Components
 
-- `recmev-v0.15.13-mac`: macOS binary
-- `recmev-v0.15.13-linux`: Linux binary
+- `recmev-v0.15.14-mac`: macOS binary
+- `recmev-v0.15.14-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -49,7 +49,7 @@ For users who prefer to perform the installation steps manually:
 mkdir -p ~/.config/recmev
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.15.13/recmev-v0.15.13-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.15.14/recmev-v0.15.14-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -71,7 +71,8 @@ Note on URLs:
 
 Available versions:
 
-- v0.15.13 (latest) - Enhanced encryption capabilities and improved wallet security
+- v0.15.14 (latest) - Enhanced report command with time filtering and improved terminal UI
+- v0.15.13 - Enhanced encryption capabilities and improved wallet security
 - v0.15.9 - Improved config command and enhanced logging system
 - v0.15.7 - Enhanced stability and performance improvements
 - v0.15.6 - Enhanced stability and performance improvements
@@ -200,7 +201,14 @@ The installation process includes several security measures:
 
 ## Version Information
 
-Current version: v0.15.13
+Current version: v0.15.14
+
+### New in v0.15.14
+
+- Enhanced report command with time-based log filtering capabilities
+- Improved terminal user experience with colorful outputs
+- Shell completion improvements with auto-detection
+- Refactored update command for more robust version handling
 
 ### New in v0.15.13
 

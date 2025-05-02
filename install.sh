@@ -2,7 +2,7 @@
 set -e
 
 # Hardcoded version
-VERSION="v0.15.13"
+VERSION="v0.15.14"
 
 # Check if running on supported platform
 check_platform() {
@@ -351,74 +351,28 @@ print_completion_instructions() {
         
         echo ""
         echo "  Or simply restart your terminal."
-        echo ""
-        echo "  To test if completions are working:"
-        echo "    1. Type 'recmev' and press Tab twice (should show available commands)"
-        echo "    2. Type 'recmev install -' and press Tab (should show --version and --list options)"
-        
-        # Add extra macOS-specific guidance for Bash users
-        if [ "$IS_MACOS" = "1" ] && [ "$(basename "$SHELL")" = "bash" ]; then
-            echo ""
-            echo "  ⚠️  Important note for macOS Bash users:"
-            echo "    If completions don't work after restarting your terminal, you may need to:"
-            echo "    1. Install bash-completion: brew install bash-completion"
-            echo "    2. Run: recmev completions"
-            echo ""
-            echo "    The 'recmev completions' command will automatically configure your shell"
-            echo "    with the correct settings for macOS."
-        fi
     else
-        echo "  Manual setup instructions:"
+        echo "  Completions need manual setup. Run this to auto-configure:"
+        echo "    recmev completions"
         echo ""
-        if [ "$BASH_OK" = "1" ]; then
-            if [ "$IS_MACOS" = "1" ]; then
-                echo "  • For Bash on macOS, add the following to your ~/.bash_profile:"
-                echo "      # Enable bash completion"
-                echo "      [ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ] && . \"/usr/local/etc/profile.d/bash_completion.sh\""
-                echo "      [ -r \"/opt/homebrew/etc/profile.d/bash_completion.sh\" ] && . \"/opt/homebrew/etc/profile.d/bash_completion.sh\""
-                echo "      # recmev completions"
-                echo "      source $HOME/.config/recmev/completion/recmev.bash"
-                echo ""
-                echo "  • You'll also need bash-completion installed:"
-                echo "      brew install bash-completion"
-            else
-                echo "  • For Bash, add the following to your ~/.bashrc:"
-                echo "      source $HOME/.config/recmev/completion/recmev.bash"
-            fi
-        fi
-        
-        if [ "$ZSH_OK" = "1" ]; then
-            echo "  • For Zsh, add the following to your ~/.zshrc:"
-            echo "      fpath=($HOME/.config/recmev/completion \$fpath)"
-            echo "      autoload -U compinit && compinit"
-        fi
-        
-        if [ "$FISH_OK" = "1" ]; then
-            echo "  • For Fish, symlink the completion file:"
-            echo "      ln -sf $HOME/.config/recmev/completion/recmev.fish ~/.config/fish/completions/recmev.fish"
-        fi
-        
-        echo ""
-        echo "  After configuration, restart your shell or source your profile to enable completions."
     fi
     
+    echo "  To test if completions are working:"
+    echo "    1. Type 'recmev' and press Tab twice"
+    echo "    2. Type 'recmev config --' and press Tab"
     echo ""
+    
     echo "  Troubleshooting tips:"
-    echo "  • If completions don't work, ensure your shell's completion system is enabled"
-    
-    # macOS-specific troubleshooting tips
     if [ "$IS_MACOS" = "1" ]; then
-        echo "  • On macOS with Bash, you need the bash-completion package installed:"
-        echo "    brew install bash-completion"
-        echo "  • On macOS with Zsh (default since Catalina), completions should work out of the box"
-        echo "  • For any shell, you can run 'recmev completions' to automatically configure completions"
+        echo "  • For Bash on macOS: brew install bash-completion"
     else
-        echo "  • For Bash on Linux, you may need to install the bash-completion package:"
-        echo "    apt install bash-completion  # Ubuntu/Debian"
-        echo "    dnf install bash-completion  # Fedora/RHEL"
+        echo "  • For Bash on Linux:"
+        echo "    sudo apt install bash-completion  # Ubuntu/Debian"
+        echo "    sudo dnf install bash-completion  # Fedora/RHEL"
+        echo "    sudo pacman -S bash-completion    # Arch Linux"
     fi
-    
-    echo "  • For more help, visit: https://github.com/RECTOR-LABS/recMEV-installer"
+    echo "  • For all shells: recmev completions"
+    echo "  • More help: https://github.com/RECTOR-LABS/recMEV-installer"
 }
 
 # Function to display the installation completion banner
@@ -504,19 +458,17 @@ do_install() {
     print_completion_instructions
     echo
     
-    echo "To get started:"
-    echo "Run: recmev guide       # See beginner's guide"
-    echo "Run: recmev --help      # See available commands"
+    echo "Getting started:"
+    echo "  recmev guide       # See beginner's guide"
+    echo "  recmev --help      # See available commands"
     
-    # Add special advice for macOS users
+    # Simplified OS-specific notes
     if [ "$(uname -s)" = "Darwin" ]; then
-        echo
-        echo "📌 Special note for macOS users:"
-        echo "If tab completions don't work properly after installation:"
-        echo "  1. Run: recmev completions"
-        echo "  2. This command will auto-detect your shell and fix completions"
-        echo
+        echo "  recmev completions  # Fix tab completions on macOS"
+    else
+        echo "  recmev config       # Configure settings"
     fi
+    echo
 }
 
 # Main script execution

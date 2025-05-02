@@ -1,5 +1,66 @@
 # What's Changed
 
+## [0.15.14]
+
+### Added
+
+- Enhanced report command with powerful filtering capabilities:
+  - New `--last-hours` option to filter logs from recent time periods
+  - New `--from-time` and `--to-time` options for precise log timeframe selection
+  - Time-based log filtering with flexible format support
+  - Intelligent log parsing for enhanced reporting
+- Report command improvements for better customer support:
+  - Option to send reports directly to the development team
+  - Improved report formatting and organization
+  - Better report file naming and storage structure
+  - More comprehensive system information collection
+- Improved terminal user experience with colorful output:
+  - Color-coded log levels for better readability (ERROR, WARN, INFO, DEBUG)
+  - Enhanced formatting of command outputs with highlighting
+  - Visual distinction between different data types and severity levels
+  - Better visual hierarchy in log and report displays
+- Shell completion improvements:
+  - Auto-detection of shell type for easier configuration
+  - Better help documentation for completions command
+  - Enhanced completion scripts with more context
+  - Support for custom completion output directories
+
+### Changed
+
+- Refactored update command for more robust version handling:
+  - Version-specific installation script URLs for better compatibility
+  - Improved version comparison and display
+  - Enhanced error reporting for update failures
+  - Better user guidance for version verification
+- Improved command-line interface:
+  - More colorful and informative terminal outputs
+  - Better visual indicators for command status and progress
+  - Enhanced feedback for long-running operations
+  - Improved help text formatting and organization
+- Enhanced error handling throughout the application:
+  - Better error messages for network and configuration issues
+  - More detailed logging of operation failures
+  - Improved error context for better troubleshooting
+  - More user-friendly error displays in terminal outputs
+
+### Fixed
+
+- Update process improvements:
+  - Fixed handling of version tags with/without 'v' prefix
+  - Improved error detection for unavailable version updates
+  - Enhanced update cancellation process
+  - Better validation of installation script execution
+- Better logging display:
+  - Fixed alignment issues in log table formatting
+  - Improved timestamp format consistency
+  - Enhanced parsing of complex log entries
+  - Better handling of multiline log messages
+- Enhanced command documentation:
+  - Fixed inconsistencies in command help texts
+  - Improved command examples for clarity
+  - Better parameter descriptions across all commands
+  - More consistent formatting of help outputs
+
 ## [0.15.13]
 
 ### Added
