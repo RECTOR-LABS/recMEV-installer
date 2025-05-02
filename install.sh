@@ -2,7 +2,7 @@
 set -e
 
 # Hardcoded version
-VERSION="v0.15.9"
+VERSION="v0.15.13"
 
 # Check if running on supported platform
 check_platform() {
@@ -32,6 +32,13 @@ install_completions() {
     COMPLETION_DIR="$HOME/.config/recmev/completion"
     mkdir -p "$COMPLETION_DIR"
     
+    # Detect OS for platform-specific handling
+    OS="$(uname -s)"
+    IS_MACOS=0
+    if [ "$OS" = "Darwin" ]; then
+        IS_MACOS=1
+    fi
+    
     echo "📥 Generating shell completions..."
     
     # Generate shell completions using the recmev binary
@@ -54,9 +61,38 @@ install_completions() {
     if [ -f "$COMPLETION_DIR/recmev.bash" ] || [ -f "$COMPLETION_DIR/_recmev" ] || [ -f "$COMPLETION_DIR/recmev.fish" ]; then
         echo "✅ Shell completions generated successfully."
         COMPLETIONS_AVAILABLE=1
+        
+        # Verify ownership and permissions
+        if [ -f "$COMPLETION_DIR/recmev.bash" ]; then
+            chmod 644 "$COMPLETION_DIR/recmev.bash"
+            echo "  - Bash completions: OK"
+        fi
+        if [ -f "$COMPLETION_DIR/_recmev" ]; then
+            chmod 644 "$COMPLETION_DIR/_recmev"
+            echo "  - Zsh completions: OK" 
+        fi
+        if [ -f "$COMPLETION_DIR/recmev.fish" ]; then
+            chmod 644 "$COMPLETION_DIR/recmev.fish"
+            echo "  - Fish completions: OK"
+        fi
+        
+        # Special note for macOS users
+        if [ "$IS_MACOS" = "1" ]; then
+            echo ""
+            echo "ℹ️  Note for macOS users:"
+            echo "  If tab completions don't work after installation,"
+            echo "  run this command to fix it:"
+            echo "    recmev completions"
+            echo ""
+        fi
     else
         echo "⚠️  No shell completions were generated successfully."
         COMPLETIONS_AVAILABLE=0
+        
+        # Provide additional guidance for troubleshooting
+        echo "Troubleshooting:"
+        echo "  - After installation completes, run: recmev completions"
+        echo "  - This will automatically set up completions for your current shell"
     fi
 }
 
@@ -96,6 +132,16 @@ setup_shell_integration() {
                             echo "✅ Bash completion already configured in ~/.bash_profile"
                             SHELL_CONFIGURED=1
                         fi
+                        
+                        # Check if bash-completion is configured in .bash_profile
+                        if ! grep -q "bash[-_]completion" "$HOME/.bash_profile"; then
+                            echo "" >> "$HOME/.bash_profile"
+                            echo "# Enable bash completion system if available (macOS)" >> "$HOME/.bash_profile"
+                            echo "[ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ] && . \"/usr/local/etc/profile.d/bash_completion.sh\"" >> "$HOME/.bash_profile"
+                            echo "[ -r \"/opt/homebrew/etc/profile.d/bash_completion.sh\" ] && . \"/opt/homebrew/etc/profile.d/bash_completion.sh\"" >> "$HOME/.bash_profile"
+                            echo "[ -r \"/usr/local/etc/bash_completion\" ] && . \"/usr/local/etc/bash_completion\"" >> "$HOME/.bash_profile"
+                            echo "✅ Added bash-completion configuration to ~/.bash_profile (macOS)"
+                        fi
                     elif [ -f "$HOME/.bashrc" ]; then
                         # Fall back to .bashrc if .bash_profile doesn't exist
                         if ! grep -q "recmev completion" "$HOME/.bashrc"; then
@@ -108,11 +154,26 @@ setup_shell_integration() {
                             echo "✅ Bash completion already configured in ~/.bashrc"
                             SHELL_CONFIGURED=1
                         fi
+                        
+                        # Check if bash-completion is configured in .bashrc
+                        if ! grep -q "bash[-_]completion" "$HOME/.bashrc"; then
+                            echo "" >> "$HOME/.bashrc"
+                            echo "# Enable bash completion system if available (macOS)" >> "$HOME/.bashrc"
+                            echo "[ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ] && . \"/usr/local/etc/profile.d/bash_completion.sh\"" >> "$HOME/.bashrc"
+                            echo "[ -r \"/opt/homebrew/etc/profile.d/bash_completion.sh\" ] && . \"/opt/homebrew/etc/profile.d/bash_completion.sh\"" >> "$HOME/.bashrc"
+                            echo "[ -r \"/usr/local/etc/bash_completion\" ] && . \"/usr/local/etc/bash_completion\"" >> "$HOME/.bashrc"
+                            echo "✅ Added bash-completion configuration to ~/.bashrc (macOS)"
+                        fi
                     else
                         # Create .bash_profile if neither exists
                         echo "# recmev completion" > "$HOME/.bash_profile"
                         echo "[ -f $COMPLETION_DIR/recmev.bash ] && source $COMPLETION_DIR/recmev.bash" >> "$HOME/.bash_profile"
-                        echo "✅ Created ~/.bash_profile with Bash completion"
+                        echo "" >> "$HOME/.bash_profile"
+                        echo "# Enable bash completion system if available (macOS)" >> "$HOME/.bash_profile"
+                        echo "[ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ] && . \"/usr/local/etc/profile.d/bash_completion.sh\"" >> "$HOME/.bash_profile"
+                        echo "[ -r \"/opt/homebrew/etc/profile.d/bash_completion.sh\" ] && . \"/opt/homebrew/etc/profile.d/bash_completion.sh\"" >> "$HOME/.bash_profile"
+                        echo "[ -r \"/usr/local/etc/bash_completion\" ] && . \"/usr/local/etc/bash_completion\"" >> "$HOME/.bash_profile"
+                        echo "✅ Created ~/.bash_profile with Bash completion configuration"
                         SHELL_CONFIGURED=1
                     fi
                 else
@@ -137,14 +198,32 @@ setup_shell_integration() {
                     fi
                 fi
 
-                # Check if bash-completion is installed
+                # Check if bash-completion is installed on macOS
                 if [ "$IS_MACOS" = "1" ]; then
                     # Check if Homebrew is installed
                     if command -v brew >/dev/null 2>&1; then
-                        if ! brew list bash-completion >/dev/null 2>&1; then
-                            echo "ℹ️  Tip: For full bash completion support on macOS, install bash-completion:"
+                        if ! brew list bash-completion >/dev/null 2>&1 && ! brew list bash-completion@2 >/dev/null 2>&1; then
+                            echo ""
+                            echo "ℹ️  Important: For bash completions to work on macOS, install bash-completion:"
                             echo "   brew install bash-completion"
+                            echo ""
+                            echo "   After installing, restart your terminal or run:"
+                            if [ -f "$HOME/.bash_profile" ]; then
+                                echo "   source ~/.bash_profile"
+                            else
+                                echo "   source ~/.bashrc"
+                            fi
+                        elif brew list bash-completion@2 >/dev/null 2>&1; then
+                            echo "✅ bash-completion@2 is already installed via Homebrew"
+                        else
+                            echo "✅ bash-completion is already installed via Homebrew"
                         fi
+                    else
+                        echo ""
+                        echo "ℹ️  Note: For full bash completion support on macOS:"
+                        echo "   1. Install Homebrew from https://brew.sh"
+                        echo "   2. Install bash-completion: brew install bash-completion"
+                        echo ""
                     fi
                 fi
             elif [ "$BASH_OK" != "1" ]; then
@@ -276,16 +355,36 @@ print_completion_instructions() {
         echo "  To test if completions are working:"
         echo "    1. Type 'recmev' and press Tab twice (should show available commands)"
         echo "    2. Type 'recmev install -' and press Tab (should show --version and --list options)"
+        
+        # Add extra macOS-specific guidance for Bash users
+        if [ "$IS_MACOS" = "1" ] && [ "$(basename "$SHELL")" = "bash" ]; then
+            echo ""
+            echo "  ⚠️  Important note for macOS Bash users:"
+            echo "    If completions don't work after restarting your terminal, you may need to:"
+            echo "    1. Install bash-completion: brew install bash-completion"
+            echo "    2. Run: recmev completions"
+            echo ""
+            echo "    The 'recmev completions' command will automatically configure your shell"
+            echo "    with the correct settings for macOS."
+        fi
     else
         echo "  Manual setup instructions:"
         echo ""
         if [ "$BASH_OK" = "1" ]; then
             if [ "$IS_MACOS" = "1" ]; then
                 echo "  • For Bash on macOS, add the following to your ~/.bash_profile:"
+                echo "      # Enable bash completion"
+                echo "      [ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ] && . \"/usr/local/etc/profile.d/bash_completion.sh\""
+                echo "      [ -r \"/opt/homebrew/etc/profile.d/bash_completion.sh\" ] && . \"/opt/homebrew/etc/profile.d/bash_completion.sh\""
+                echo "      # recmev completions"
+                echo "      source $HOME/.config/recmev/completion/recmev.bash"
+                echo ""
+                echo "  • You'll also need bash-completion installed:"
+                echo "      brew install bash-completion"
             else
                 echo "  • For Bash, add the following to your ~/.bashrc:"
+                echo "      source $HOME/.config/recmev/completion/recmev.bash"
             fi
-            echo "      source $HOME/.config/recmev/completion/recmev.bash"
         fi
         
         if [ "$ZSH_OK" = "1" ]; then
@@ -312,6 +411,7 @@ print_completion_instructions() {
         echo "  • On macOS with Bash, you need the bash-completion package installed:"
         echo "    brew install bash-completion"
         echo "  • On macOS with Zsh (default since Catalina), completions should work out of the box"
+        echo "  • For any shell, you can run 'recmev completions' to automatically configure completions"
     else
         echo "  • For Bash on Linux, you may need to install the bash-completion package:"
         echo "    apt install bash-completion  # Ubuntu/Debian"
@@ -407,6 +507,16 @@ do_install() {
     echo "To get started:"
     echo "Run: recmev guide       # See beginner's guide"
     echo "Run: recmev --help      # See available commands"
+    
+    # Add special advice for macOS users
+    if [ "$(uname -s)" = "Darwin" ]; then
+        echo
+        echo "📌 Special note for macOS users:"
+        echo "If tab completions don't work properly after installation:"
+        echo "  1. Run: recmev completions"
+        echo "  2. This command will auto-detect your shell and fix completions"
+        echo
+    fi
 }
 
 # Main script execution

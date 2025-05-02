@@ -1,5 +1,60 @@
 # What's Changed
 
+## [0.15.13]
+
+### Added
+
+- Advanced wallet security with enhanced encryption capabilities:
+  - Implemented AES-256-GCM encryption for wallet private keys
+  - Added PBKDF2 key derivation for secure password-based encryption
+  - Salt generation and secure nonce handling for encryption
+  - Secure storage format with base64 encoding for encrypted keys
+  - Comprehensive decryption features with robust error handling
+- Enhanced command-line interface for security operations:
+  - Interactive password prompting with confirmation for key encryption
+  - Secure input masking when entering sensitive information
+  - Automatic encryption prompting after key input for better security
+- Improved security validation and checks:
+  - Validation of key length and format before encryption
+  - Multiple layers of error handling for encryption/decryption operations
+  - Memory safety improvements when handling sensitive data
+  - Enhanced password validation with confirmation workflows
+- Extended documentation for security features:
+  - Comprehensive guide for wallet key encryption
+  - Detailed explanation of security best practices
+  - Step-by-step instructions for key management
+
+### Changed
+
+- Refactored key management system:
+  - Separated plaintext and encrypted key storage
+  - Improved key lifecycle management
+  - Better error messages for encryption operations
+  - Enhanced configuration save procedures for keys
+- Updated dependency management:
+  - Added explicit versions for cryptographic libraries
+  - Updated security-critical dependencies
+  - Optimized dependency tree for smaller binary size
+  - Improved build system for consistent versioning
+- Enhanced user experience for security operations:
+  - Clearer prompts for security-related actions
+  - Better feedback during encryption/decryption
+  - Improved error reporting for failed security operations
+  - More intuitive workflow for key management
+
+### Fixed
+
+- Resolved issues with wallet key handling:
+  - Fixed potential race conditions during key operations
+  - Addressed edge cases in encryption workflow
+  - Corrected error handling in decryption process
+  - Improved validation for malformed encrypted keys
+- Security-related fixes:
+  - Addressed potential vulnerabilities in key storage
+  - Fixed issues with password handling
+  - Improved error reporting for security operations
+  - Enhanced validation for cryptographic operations
+
 ## [0.15.9]
 
 ### Added
