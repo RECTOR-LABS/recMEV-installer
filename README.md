@@ -9,7 +9,7 @@ recMEV installer package provides an automated way to install the recMEV binary 
 - macOS
 - Linux
 
-The installer places the binary in the system binary directory (`/usr/local/bin`).
+The installer places the binary in the system binary directory (`/usr/local/bin`)
 
 ## Components
 
