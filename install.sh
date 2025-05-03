@@ -39,57 +39,90 @@ install_completions() {
         IS_MACOS=1
     fi
     
+    # Detect current shell
+    CURRENT_SHELL=$(basename "$SHELL")
+    
     echo "📥 Generating shell completions..."
     
-    # Generate shell completions using the recmev binary
-    echo "Generating Bash completions..."
-    "${INSTALL_DIR}/recmev" completions bash -o "$COMPLETION_DIR" && BASH_OK=1 || \
-        echo "⚠️  Bash completion generation failed."
+    # Only generate completions for the current shell
+    case "$CURRENT_SHELL" in
+        bash)
+            echo "Generating Bash completions..."
+            "${INSTALL_DIR}/recmev" completions bash -o "$COMPLETION_DIR" && BASH_OK=1 || \
+                echo "⚠️  Bash completion generation failed."
+            
+            if [ -f "$COMPLETION_DIR/recmev.bash" ]; then
+                chmod 644 "$COMPLETION_DIR/recmev.bash"
+                echo "✅ Bash completions generated successfully."
+                COMPLETIONS_AVAILABLE=1
+            else
+                echo "⚠️  Failed to generate Bash completions."
+                COMPLETIONS_AVAILABLE=0
+            fi
+            ;;
+        zsh)
+            echo "Generating Zsh completions..."
+            "${INSTALL_DIR}/recmev" completions zsh -o "$COMPLETION_DIR" && ZSH_OK=1 || \
+                echo "⚠️  Zsh completion generation failed."
+            
+            if [ -f "$COMPLETION_DIR/_recmev" ]; then
+                chmod 644 "$COMPLETION_DIR/_recmev"
+                echo "✅ Zsh completions generated successfully."
+                COMPLETIONS_AVAILABLE=1
+            else
+                echo "⚠️  Failed to generate Zsh completions."
+                COMPLETIONS_AVAILABLE=0
+            fi
+            ;;
+        fish)
+            echo "Generating Fish completions..."
+            "${INSTALL_DIR}/recmev" completions fish -o "$COMPLETION_DIR" && FISH_OK=1 || \
+                echo "⚠️  Fish completion generation failed."
+            
+            if [ -f "$COMPLETION_DIR/recmev.fish" ]; then
+                chmod 644 "$COMPLETION_DIR/recmev.fish"
+                echo "✅ Fish completions generated successfully."
+                COMPLETIONS_AVAILABLE=1
+            else
+                echo "⚠️  Failed to generate Fish completions."
+                COMPLETIONS_AVAILABLE=0
+            fi
+            ;;
+        *)
+            # For unknown shells, generate all completion types for user to manually set up
+            echo "Generating Bash completions..."
+            "${INSTALL_DIR}/recmev" completions bash -o "$COMPLETION_DIR" && BASH_OK=1 || true
+            
+            echo "Generating Zsh completions..."
+            "${INSTALL_DIR}/recmev" completions zsh -o "$COMPLETION_DIR" && ZSH_OK=1 || true
+            
+            echo "Generating Fish completions..."
+            "${INSTALL_DIR}/recmev" completions fish -o "$COMPLETION_DIR" && FISH_OK=1 || true
+            
+            # Check if any completions were generated successfully
+            if [ -f "$COMPLETION_DIR/recmev.bash" ] || [ -f "$COMPLETION_DIR/_recmev" ] || [ -f "$COMPLETION_DIR/recmev.fish" ]; then
+                echo "✅ Shell completions generated successfully."
+                COMPLETIONS_AVAILABLE=1
+                chmod 644 "$COMPLETION_DIR"/* 2>/dev/null || true
+            else
+                echo "⚠️  No shell completions were generated successfully."
+                COMPLETIONS_AVAILABLE=0
+            fi
+            ;;
+    esac
     
-    echo "Generating Zsh completions..."
-    "${INSTALL_DIR}/recmev" completions zsh -o "$COMPLETION_DIR" && ZSH_OK=1 || \
-        echo "⚠️  Zsh completion generation failed."
+    # Special note for macOS users
+    if [ "$IS_MACOS" = "1" ]; then
+        echo ""
+        echo "ℹ️  Note for macOS users:"
+        echo "  If tab completions don't work after installation,"
+        echo "  run this command to fix it:"
+        echo "    recmev completions"
+        echo ""
+    fi
     
-    echo "Generating Fish completions..."
-    "${INSTALL_DIR}/recmev" completions fish -o "$COMPLETION_DIR" && FISH_OK=1 || \
-        echo "⚠️  Fish completion generation failed."
-    
-    # Make sure files have proper permissions
-    chmod 644 "$COMPLETION_DIR"/* 2>/dev/null || true
-    
-    # Check if any completions were generated successfully
-    if [ -f "$COMPLETION_DIR/recmev.bash" ] || [ -f "$COMPLETION_DIR/_recmev" ] || [ -f "$COMPLETION_DIR/recmev.fish" ]; then
-        echo "✅ Shell completions generated successfully."
-        COMPLETIONS_AVAILABLE=1
-        
-        # Verify ownership and permissions
-        if [ -f "$COMPLETION_DIR/recmev.bash" ]; then
-            chmod 644 "$COMPLETION_DIR/recmev.bash"
-            echo "  - Bash completions: OK"
-        fi
-        if [ -f "$COMPLETION_DIR/_recmev" ]; then
-            chmod 644 "$COMPLETION_DIR/_recmev"
-            echo "  - Zsh completions: OK" 
-        fi
-        if [ -f "$COMPLETION_DIR/recmev.fish" ]; then
-            chmod 644 "$COMPLETION_DIR/recmev.fish"
-            echo "  - Fish completions: OK"
-        fi
-        
-        # Special note for macOS users
-        if [ "$IS_MACOS" = "1" ]; then
-            echo ""
-            echo "ℹ️  Note for macOS users:"
-            echo "  If tab completions don't work after installation,"
-            echo "  run this command to fix it:"
-            echo "    recmev completions"
-            echo ""
-        fi
-    else
-        echo "⚠️  No shell completions were generated successfully."
-        COMPLETIONS_AVAILABLE=0
-        
-        # Provide additional guidance for troubleshooting
+    # Provide guidance if completions weren't successful
+    if [ "$COMPLETIONS_AVAILABLE" != "1" ]; then
         echo "Troubleshooting:"
         echo "  - After installation completes, run: recmev completions"
         echo "  - This will automatically set up completions for your current shell"
