@@ -1,5 +1,45 @@
 # What's Changed
 
+## [0.16.3]
+
+### Added
+
+- Added author information to Cargo.toml with "RECTOR" as the author
+- Improved project metadata and attribution
+
+### Changed
+
+- Updated from version 0.16.2 to 0.16.3
+- Enhanced documentation and project identification
+
+## [0.16.2]
+
+### Added
+
+- New wallet management features:
+  - `wallet show` command to display balance of SOL and SPL tokens
+  - `wallet send` command to transfer SOL and SPL tokens to other wallets
+  - `wallet wsol` command for wrapping and unwrapping SOL
+  - Comprehensive help documentation for all wallet subcommands
+
+### Changed
+
+- Refactored CLI command structure:
+  - Moved `swap` command under the `wallet` namespace (`wallet swap`)
+  - Added backward compatibility notes for users of the previous `swap` command
+  - Organized token-related functionality under a unified `wallet` command group
+- Updated default Solana RPC URL from devnet to mainnet:
+  - Changed from `https://api.devnet.solana.com` to `https://solana-rpc.publicnode.com`
+  - Updated examples in help text to use mainnet URLs
+- Improved command help text and documentation:
+  - Enhanced command examples with clearer formatting
+  - Added more detailed explanations for command options
+  - Updated guide with new wallet command examples
+
+### Fixed
+
+- Downgraded subtle dependency from version 2.6.1 to 2.4.1 to resolve compatibility issues
+
 ## [0.15.14]
 
 ### Added
@@ -28,159 +68,42 @@
 ### Changed
 
 - Refactored update command for more robust version handling:
-  - Version-specific installation script URLs for better compatibility
   - Improved version comparison and display
-  - Enhanced error reporting for update failures
   - Better user guidance for version verification
-- Improved command-line interface:
-  - More colorful and informative terminal outputs
-  - Better visual indicators for command status and progress
-  - Enhanced feedback for long-running operations
-  - Improved help text formatting and organization
-- Enhanced error handling throughout the application:
-  - Better error messages for network and configuration issues
-  - More detailed logging of operation failures
-  - Improved error context for better troubleshooting
-  - More user-friendly error displays in terminal outputs
+  - Fixed handling of version tags with/without 'v' prefix
+  - Improved error detection for unavailable version updates
 
 ### Fixed
 
-- Update process improvements:
-  - Fixed handling of version tags with/without 'v' prefix
-  - Improved error detection for unavailable version updates
-  - Enhanced update cancellation process
-  - Better validation of installation script execution
-- Better logging display:
-  - Fixed alignment issues in log table formatting
-  - Improved timestamp format consistency
-  - Enhanced parsing of complex log entries
-  - Better handling of multiline log messages
-- Enhanced command documentation:
-  - Fixed inconsistencies in command help texts
-  - Improved command examples for clarity
-  - Better parameter descriptions across all commands
-  - More consistent formatting of help outputs
+- Improved build system for consistent versioning
 
 ## [0.15.13]
 
 ### Added
 
-- Advanced wallet security with enhanced encryption capabilities:
-  - Implemented AES-256-GCM encryption for wallet private keys
-  - Added PBKDF2 key derivation for secure password-based encryption
-  - Salt generation and secure nonce handling for encryption
-  - Secure storage format with base64 encoding for encrypted keys
-  - Comprehensive decryption features with robust error handling
-- Enhanced command-line interface for security operations:
-  - Interactive password prompting with confirmation for key encryption
-  - Secure input masking when entering sensitive information
-  - Automatic encryption prompting after key input for better security
-- Improved security validation and checks:
-  - Validation of key length and format before encryption
-  - Multiple layers of error handling for encryption/decryption operations
-  - Memory safety improvements when handling sensitive data
-  - Enhanced password validation with confirmation workflows
-- Extended documentation for security features:
-  - Comprehensive guide for wallet key encryption
-  - Detailed explanation of security best practices
-  - Step-by-step instructions for key management
+- Automated cleanup of old binary versions during release process
 
 ### Changed
 
-- Refactored key management system:
-  - Separated plaintext and encrypted key storage
-  - Improved key lifecycle management
-  - Better error messages for encryption operations
-  - Enhanced configuration save procedures for keys
-- Updated dependency management:
-  - Added explicit versions for cryptographic libraries
-  - Updated security-critical dependencies
-  - Optimized dependency tree for smaller binary size
-  - Improved build system for consistent versioning
-- Enhanced user experience for security operations:
-  - Clearer prompts for security-related actions
-  - Better feedback during encryption/decryption
-  - Improved error reporting for failed security operations
-  - More intuitive workflow for key management
-
-### Fixed
-
-- Resolved issues with wallet key handling:
-  - Fixed potential race conditions during key operations
-  - Addressed edge cases in encryption workflow
-  - Corrected error handling in decryption process
-  - Improved validation for malformed encrypted keys
-- Security-related fixes:
-  - Addressed potential vulnerabilities in key storage
-  - Fixed issues with password handling
-  - Improved error reporting for security operations
-  - Enhanced validation for cryptographic operations
+- Improved release process documentation with explicit version cleanup steps
 
 ## [0.15.9]
 
 ### Added
 
-- Enhanced config command with improved security features:
-  - New `--clear-key` option to completely remove wallet keys
-  - New `--log-path` option to display current log file path
-  - New `--log-status` option showing detailed logging information
-- Advanced logging system with comprehensive error reporting:
-  - Context-aware error display for better troubleshooting
-  - Additional fields for ERROR and WARN log levels
-  - Transaction details included in relevant log entries
-- Improved wallet security with encryption enhancements:
-  - Streamlined key encryption workflow
-  - Better handling of key formats and validation
-  - Multiple key file format support
-
-### Changed
-
-- Redesigned config command interface:
-  - Removed `--log-dir` option in favor of automatic management
-  - Removed `--password` option for better security practices
-  - Added validation for configuration changes
-  - Improved user feedback for configuration updates
-- Enhanced log command display format:
-  - Better formatting for improved readability
-  - Color-coded log levels for easier parsing
-  - Additional help text for common log operations
-- Improved guide command with more comprehensive information:
-  - Detailed command descriptions and examples
-  - Organized sections for better navigation
-  - Tips and best practices for common operations
-- Expanded user documentation throughout the application
-
-### Fixed
-
-- Improved error handling for configuration operations
-- Better validation for wallet key file formats
-- Enhanced display of configuration options
-- Fixed various minor UI formatting issues
-- Streamlined help text for better clarity
+- Updated build system to ensure consistent versioning across all components
 
 ## [0.15.7]
 
-### Changed
+### Added
 
-- Version bump to 0.15.7 for release
-- Enhanced stability and performance improvements
-- Updated dependencies for better security and performance
-
-### Fixed
-
-- Various bug fixes and code optimizations
+- Added explicit versions for cryptographic libraries
 
 ## [0.15.6]
 
 ### Changed
 
-- Version bump to 0.15.6 for release
-- Enhanced stability and performance improvements
-- Updated dependencies for better security and performance
-
-### Fixed
-
-- Various bug fixes and code optimizations
+- Updated version checking mechanism from GitHub API to using version.txt in recMEV-installer repository
 
 ## [0.15.4]
 
@@ -190,27 +113,20 @@
   - Install specific versions with `recmev install --version <VERSION>`
   - List available versions with `recmev install --list`
   - View version history with release dates
-  - Version caching for handling GitHub API rate limits
 - Shell completion support for Bash, Zsh, and Fish shells
 - Automatic shell integration during installation
-- Enhanced version management with detailed version listing
-- New shell completion files: recmev.bash, recmev.fish, and recmev.zsh
 
 ### Changed
 
-- Version bump to 0.15.4 for release
-- Enhanced stability and performance improvements
 - Improved UI formatting in swap command output
-- Better error handling for GitHub API interactions
-- Enhanced installation process with better feedback
-- Updated documentation with shell completion setup guides
-- Improved installer script with automatic shell detection
+- Better error handling for GitHub API interactions with rate limiting
+- Enhanced installation process with real-time feedback
 
 ### Fixed
 
-- Various bug fixes and code optimizations
-- Minor display formatting issues
-- Cross-shell compatibility for completions
+- Fixed display formatting in swap command priority fee output
+- Resolved cross-shell compatibility issues for completions
+- Improved caching mechanism for version data
 
 ## [0.14.4]
 
