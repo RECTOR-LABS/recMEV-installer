@@ -18,6 +18,35 @@ check_platform() {
     fi
 }
 
+# Function to display installation information and confirm with user
+confirm_installation() {
+    echo "📋 recMEV Installation Information"
+    echo "=================================="
+    echo "You are about to install recMEV ${VERSION}, a high-performance Solana arbitrage engine."
+    echo
+    echo "This installation will:"
+    echo "  • Install recMEV binary to ${INSTALL_DIR}/recmev"
+    echo "  • Create configuration directory at $HOME/.config/recmev"
+    echo "  • Set up shell completions for your terminal"
+    echo
+    echo "The installer requires sudo access to install the binary to ${INSTALL_DIR}."
+    echo
+
+    # Prompt for confirmation
+    printf "Do you want to proceed with the installation? [y/N] "
+    read -r response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+            echo "✅ Proceeding with installation..."
+            ;;
+        *)
+            echo "❌ Installation cancelled."
+            exit 1
+            ;;
+    esac
+    echo
+}
+
 # Function to ensure installation directory exists
 ensure_install_dir() {
     # We'll install to /usr/local/bin which should already exist on most systems
@@ -433,6 +462,9 @@ do_install() {
     
     # Create directories
     ensure_install_dir
+    
+    # Display installation confirmation prompt
+    confirm_installation
     
     echo "🔧 Installing recMEV ${VERSION} for $(uname -s)..."
 
