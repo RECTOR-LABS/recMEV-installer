@@ -13,8 +13,8 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 
 ## Components
 
-- `recmev-v0.16.3-mac`: macOS binary
-- `recmev-v0.16.3-linux`: Linux binary
+- `recmev-v0.16.21-mac`: macOS binary
+- `recmev-v0.16.21-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -49,7 +49,7 @@ For users who prefer to perform the installation steps manually:
 mkdir -p ~/.config/recmev
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.16.3/recmev-v0.16.3-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.16.21/recmev-v0.16.21-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -71,7 +71,8 @@ Note on URLs:
 
 Available versions:
 
-- v0.16.3 (latest) - Enhance CLI Logic
+- v0.16.21 (latest) - Real transaction handling and price lookups via Jupiter API
+- v0.16.3 - Enhanced CLI Logic
 - v0.15.14 - Enhanced report command with time filtering and improved terminal UI
 - v0.15.13 - Enhanced encryption capabilities and improved wallet security
 - v0.15.9 - Improved config command and enhanced logging system

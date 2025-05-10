@@ -1,5 +1,29 @@
 # What's Changed
 
+## [0.16.21]
+
+### Added
+
+- Implemented real transaction handling in Jupiter client
+- Added new price module for token price lookups via Jupiter API
+- Added caching system for token prices with disk persistence
+- Added special handling for JUP token swaps with adjusted slippage and priority fees
+- Added proper error handling for slippage errors with user guidance
+- Implemented batch price fetching for multiple tokens
+
+### Changed
+
+- Updated CLI to provide better help messages for wallet subcommands
+- Improved quote display with better formatting for token amounts
+- Enhanced swap transaction handling with proper signing and confirmation flow
+- Implemented fallback mechanisms for API requests
+
+### Fixed
+
+- Fixed transaction submission and confirmation flows
+- Improved error handling with more descriptive error messages
+- Enhanced handling of versioned transactions
+
 ## [0.16.3]
 
 ### Added
