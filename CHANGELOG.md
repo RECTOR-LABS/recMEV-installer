@@ -1,47 +1,38 @@
 # What's Changed
 
-## [0.16.25]
+## [0.17.9]
 
 ### Added
 
-- Session-based wallet authentication system:
-  - New configurable session timeout with `session_timeout_hours` setting
-  - Session binding to machine identity for enhanced security
-  - Persistent wallet sessions that eliminate need for repeated password entry
-  - Automatic session validation and expiration handling
-- Enhanced security features:
-  - Secure storage of decrypted keys in memory only during valid sessions
-  - Machine-specific session identifiers to prevent session hijacking
-  - Configurable session timeout with granular control
-- Configuration commands for session management:
-  - `recmev config --session-timeout-hours <HOURS>` to set session duration
-  - `recmev config --use-session-auth <true|false>` to enable/disable session authentication
+- Enhanced wallet management system:
+  - Implemented multi-wallet support with encrypted storage
+  - Added `wallet add` command with options for secure input and new wallet creation
+  - Added `wallet remove` command to delete wallets with confirmation
+  - Added `wallet use` command to switch between wallets
+  - Added `wallet export` command with multiple format options (bs58, keypair, JSON)
+  - Added secure wallet key encryption with password protection
+- Improved wallet display functionality:
+  - Enhanced `wallet list` command with color-coded status indicators
+  - Added support for viewing encrypted wallet information
+  - Improved wallet address display with better formatting
+- Added automatic migration from single-wallet to multi-wallet configuration
+- Implemented machine-specific session bindings for enhanced security
 
 ### Changed
 
-- Jupiter API integration updated to latest v1 endpoints:
-  - Switched from v6 to v1 endpoints as per Jupiter documentation
-  - Updated fallback mechanisms for API requests with new endpoint URLs
-  - Enhanced error handling with improved API response parsing
-- Improved swap functionality:
-  - Added support for restricting intermediate tokens in swap requests
-  - Increased maximum accounts from 32 to 64 for better DEX compatibility
-  - Enhanced transaction construction with optimized parameters
-- Command handling refactored:
-  - Moved update, report, install, and completion functions to dedicated modules
-  - Enhanced configuration directory handling with better error messages
-  - Improved logging output for transaction confirmations
-- Token decimal handling improvements:
-  - Implemented caching for token decimals to reduce RPC calls
-  - Enhanced token decimal fetching with multiple RPC endpoint support
-  - Refactored input/output decimal handling in quote calculations
+- Refactored configuration system for multi-wallet support:
+  - Updated Config struct with WalletConfig for better organization
+  - Enhanced wallet key derivation with support for multiple formats
+  - Improved error handling and user feedback for wallet operations
+- Improved session management for encrypted wallet keys
+- Enhanced security with better password handling and encryption
+- Updated wallet utilities with better validation and error checking
 
 ### Fixed
 
-- Various stability improvements:
-  - Fixed potential overflow issues in token amount calculations
-  - Enhanced error handling for network requests with better fallback mechanisms
-  - Improved logging with more descriptive error messages
+- Fixed private key validation and format detection
+- Improved error handling for wallet operations with better user feedback
+- Enhanced session security with machine-specific bindings
 
 ## [0.16.21]
 
