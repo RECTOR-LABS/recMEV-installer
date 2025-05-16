@@ -1,5 +1,33 @@
 # What's Changed
 
+## [0.17.10]
+
+### Added
+
+- Added version tracking system with build timestamps:
+  - New `VersionConfig` to store version information and build timestamps
+  - Enhanced configuration to display version details in the config command
+  - Improved logging with version information at startup and during command execution
+- Enhanced logging system:
+  - Added `detailed` flag to logs command for more granular control over log output
+  - Improved log filtering to hide technical details like request_id and duration by default
+  - Added human-readable timestamp formatting for better readability
+
+### Changed
+
+- Upgraded configuration system with version tracking:
+  - Added automatic versioning of configuration files
+  - Implemented backward compatibility handling for older config formats
+  - Enhanced config display to show version and build information
+- Improved error handling for configuration file parsing with graceful fallbacks
+- Enhanced logging output formatting for better readability
+
+### Fixed
+
+- Fixed legacy configuration loading to handle missing version information
+- Improved config migration process to preserve user settings while adding new fields
+- Enhanced log command to handle different levels of detail without overwhelming output
+
 ## [0.17.9]
 
 ### Added
