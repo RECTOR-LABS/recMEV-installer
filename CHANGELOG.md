@@ -1,5 +1,48 @@
 # What's Changed
 
+## [0.16.25]
+
+### Added
+
+- Session-based wallet authentication system:
+  - New configurable session timeout with `session_timeout_hours` setting
+  - Session binding to machine identity for enhanced security
+  - Persistent wallet sessions that eliminate need for repeated password entry
+  - Automatic session validation and expiration handling
+- Enhanced security features:
+  - Secure storage of decrypted keys in memory only during valid sessions
+  - Machine-specific session identifiers to prevent session hijacking
+  - Configurable session timeout with granular control
+- Configuration commands for session management:
+  - `recmev config --session-timeout-hours <HOURS>` to set session duration
+  - `recmev config --use-session-auth <true|false>` to enable/disable session authentication
+
+### Changed
+
+- Jupiter API integration updated to latest v1 endpoints:
+  - Switched from v6 to v1 endpoints as per Jupiter documentation
+  - Updated fallback mechanisms for API requests with new endpoint URLs
+  - Enhanced error handling with improved API response parsing
+- Improved swap functionality:
+  - Added support for restricting intermediate tokens in swap requests
+  - Increased maximum accounts from 32 to 64 for better DEX compatibility
+  - Enhanced transaction construction with optimized parameters
+- Command handling refactored:
+  - Moved update, report, install, and completion functions to dedicated modules
+  - Enhanced configuration directory handling with better error messages
+  - Improved logging output for transaction confirmations
+- Token decimal handling improvements:
+  - Implemented caching for token decimals to reduce RPC calls
+  - Enhanced token decimal fetching with multiple RPC endpoint support
+  - Refactored input/output decimal handling in quote calculations
+
+### Fixed
+
+- Various stability improvements:
+  - Fixed potential overflow issues in token amount calculations
+  - Enhanced error handling for network requests with better fallback mechanisms
+  - Improved logging with more descriptive error messages
+
 ## [0.16.21]
 
 ### Added
