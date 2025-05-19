@@ -46,7 +46,7 @@ For users who prefer to perform the installation steps manually:
 
 ```bash
 # Create config directory if it doesn't exist
-mkdir -p ~/.config/recmev
+mkdir -p ~/.recmev
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
 curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.17.15/recmev-v0.17.15-OS -o recmev
@@ -159,32 +159,32 @@ sudo rm /usr/local/bin/recmev
 2. Remove configuration files (optional):
 
 ```bash
-rm -rf ~/.config/recmev
+rm -rf ~/.recmev
 ```
 
 3. Remove log files (optional):
 
 ```bash
-rm -rf ~/.local/share/recmev/logs
+rm -rf ~/.recmev/logs
 ```
 
 4. Remove cache files (optional):
 
 ```bash
-rm -rf ~/.cache/recmev
+rm -rf ~/.recmev/cache
 ```
 
 5. Remove shell completions (if installed):
 
 ```bash
 # Bash
-rm ~/.config/recmev/completion/recmev.bash
+rm ~/.recmev/completion/recmev.bash
 
 # Zsh
-rm ~/.config/recmev/completion/recmev.zsh
+rm ~/.recmev/completion/_recmev
 
 # Fish
-rm ~/.config/fish/completions/recmev.fish
+rm ~/.recmev/fish/completions/recmev.fish
 ```
 
 **Note:** The exact paths may vary slightly depending on your system configuration and installation method.
@@ -247,7 +247,7 @@ Common issues and solutions:
 recMEV supports shell completions for Bash, Zsh, and Fish shells. The installer automatically:
 
 1. Generates completion scripts using the `completions` command
-2. Stores them in `~/.config/recmev/completion/`
+2. Stores them in `~/.recmev/completion/`
 3. Attempts to automatically configure completions for your current shell
 
 ### Manual Generation and Setup
@@ -268,7 +268,7 @@ If automatic setup fails or if you want to manually enable completions:
 Add the following to your `~/.bashrc` or `~/.bash_profile`:
 
 ```bash
-[ -f ~/.config/recmev/completion/recmev.bash ] && source ~/.config/recmev/completion/recmev.bash
+[ -f ~/.recmev/completion/recmev.bash ] && source ~/.recmev/completion/recmev.bash
 ```
 
 #### Zsh
@@ -277,7 +277,7 @@ Add the following to your `~/.zshrc`:
 
 ```zsh
 # Add recmev completions dir to fpath
-fpath=(~/.config/recmev/completion $fpath)
+fpath=(~/.recmev/completion $fpath)
 autoload -U compinit && compinit
 ```
 
@@ -286,7 +286,7 @@ autoload -U compinit && compinit
 Link the completion file to your Fish completions directory:
 
 ```fish
-ln -sf ~/.config/recmev/completion/recmev.fish ~/.config/fish/completions/recmev.fish
+ln -sf ~/.recmev/fish/completions/recmev.fish ~/.config/fish/completions/recmev.fish
 ```
 
 ### Testing Completions

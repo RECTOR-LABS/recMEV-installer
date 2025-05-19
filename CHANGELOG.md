@@ -40,8 +40,6 @@
 - Enhanced error handling in wallet operations
 - Fixed command help display for wallet subcommands
 
-# What's Changed
-
 ## [0.17.10]
 
 ### Added

@@ -329,13 +329,19 @@ setup_shell_integration() {
             ;;
         fish)
             if [ "$FISH_OK" = "1" ]; then
-                # Create fish completions directory if it doesn't exist
-                mkdir -p "$HOME/.config/fish/completions"
+                # Create fish completions directory in .recmev instead of .config/fish
+                mkdir -p "$HOME/.recmev/fish/completions"
                 
-                # Symlink the completion file
+                # Symlink the completion file to .recmev/fish/completions instead of .config/fish/completions
                 if [ -f "$COMPLETION_DIR/recmev.fish" ]; then
-                    ln -sf "$COMPLETION_DIR/recmev.fish" "$HOME/.config/fish/completions/recmev.fish"
-                    echo "✅ Added Fish completion to ~/.config/fish/completions/"
+                    cp "$COMPLETION_DIR/recmev.fish" "$HOME/.recmev/fish/completions/recmev.fish"
+                    chmod 644 "$HOME/.recmev/fish/completions/recmev.fish"
+                    
+                    # We still need to create a symlink in the standard location for fish to find the completions
+                    mkdir -p "$HOME/.config/fish/completions"
+                    ln -sf "$HOME/.recmev/fish/completions/recmev.fish" "$HOME/.config/fish/completions/recmev.fish"
+                    
+                    echo "✅ Added Fish completion to ~/.recmev/fish/completions/ (symlinked to ~/.config/fish/completions/)"
                     SHELL_CONFIGURED=1
                 fi
             elif [ "$FISH_OK" != "1" ]; then
@@ -407,6 +413,8 @@ print_completion_instructions() {
                 echo "    source ~/.zshrc"
                 ;;
             fish)
+                # The symlink to .config/fish/completions should already work,
+                # but we'll still mention the config file for consistency
                 echo "    source ~/.config/fish/config.fish"
                 ;;
         esac
