@@ -1,3 +1,45 @@
+## [0.17.15]
+
+### Added
+
+- Comprehensive uninstall command with improved user experience:
+  - New `uninstall` command with detailed removal options
+  - Added `--all` flag for complete cleanup including data and configuration
+  - Smart detection of system vs. user installations
+  - Platform-specific guidance for system installations requiring sudo
+  - Detailed reporting of uninstallation progress and results
+- Enhanced logs command with filtering options:
+  - Added `--detailed` flag to display additional technical information
+  - Improved control over log output verbosity for better readability
+  - Enhanced filtering for request IDs and duration metrics
+- Centralized help command handling:
+  - Moved CLI help functionality to dedicated help module
+  - Improved command documentation and examples
+  - Better organization of help-related code for maintenance
+
+### Changed
+
+- Enhanced transaction history display in wallet commands:
+  - Added rate limiting for RPC requests to prevent API throttling
+  - Implemented configurable RPS limit in configuration
+  - Added progress indicators and animated spinners during data fetching
+  - Improved visual feedback for long-running operations
+- Improved version tracking and configuration:
+  - Enhanced version information display in commands
+  - Added configuration version tracking across commands
+  - Better logging with version context for troubleshooting
+- Refactored command handling for better organization:
+  - Modularized command implementation for better maintainability
+  - Centralized help command handling for consistency
+  - Improved command feedback and error reporting
+
+### Fixed
+
+- Fixed log display formatting for better readability
+- Improved rate limiting for Solana RPC requests
+- Enhanced error handling in wallet operations
+- Fixed command help display for wallet subcommands
+
 # What's Changed
 
 ## [0.17.10]
