@@ -26,7 +26,7 @@ confirm_installation() {
     echo
     echo "This installation will:"
     echo "  • Install recMEV binary to ${INSTALL_DIR}/recmev"
-    echo "  • Create configuration directory at $HOME/.config/recmev"
+    echo "  • Create configuration directory at $HOME/.recmev"
     echo "  • Set up shell completions for your terminal"
     echo
     echo "The installer requires sudo access to install the binary to ${INSTALL_DIR}."
@@ -53,12 +53,12 @@ ensure_install_dir() {
     INSTALL_DIR="/usr/local/bin"
     
     # Create config directory
-    mkdir -p "$HOME/.config/recmev"
+    mkdir -p "$HOME/.recmev"
 }
 
 # Function to install shell completions
 install_completions() {
-    COMPLETION_DIR="$HOME/.config/recmev/completion"
+    COMPLETION_DIR="$HOME/.recmev/completion"
     mkdir -p "$COMPLETION_DIR"
     
     # Detect OS for platform-specific handling
@@ -165,7 +165,7 @@ setup_shell_integration() {
     fi
     
     CURRENT_SHELL=$(basename "$SHELL")
-    COMPLETION_DIR="$HOME/.config/recmev/completion"
+    COMPLETION_DIR="$HOME/.recmev/completion"
     SHELL_CONFIGURED=0
     
     # Detect macOS for platform-specific handling
@@ -388,7 +388,7 @@ print_completion_instructions() {
     
     echo "🔍 Shell completion setup:"
     echo ""
-    echo "  Completion files have been installed to: $HOME/.config/recmev/completion"
+    echo "  Completion files have been installed to: $HOME/.recmev/completion"
     echo ""
     
     if [ "$SHELL_CONFIGURED" = "1" ]; then
