@@ -1,3 +1,30 @@
+## [0.17.16]
+
+### Added
+
+- Enhanced error handling for wallet accounts commands
+
+### Changed
+
+- Improved help message display for wallet accounts subcommands:
+  - Enhanced formatting with better spacing for option descriptions
+  - Updated example commands with latest parameter naming conventions
+  - Added additional examples demonstrating priority fee usage
+- Refined transaction handling in Jupiter client:
+  - Standardized transaction confirmation process for both legacy and versioned transactions
+  - Used consistent spinner display for better user experience across all transaction types
+- Updated author information in Cargo.toml to "RECTOR (RECTOR LABS"
+- Improved transaction explorer URL generation based on cluster type (devnet, testnet, mainnet)
+
+### Fixed
+
+- Centralized help message handling for wallet accounts close command:
+  - Moved duplicate help information to the main help system
+  - Ensured consistent error messages when required parameters are missing
+  - Fixed formatting issues in command help display
+- Removed unnecessary imports and improved code organization in Jupiter client
+- Improved command line argument handling for nested subcommands
+
 ## [0.17.15]
 
 ### Added

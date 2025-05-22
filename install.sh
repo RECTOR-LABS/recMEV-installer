@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 set -e
 
-# Hardcoded version
-VERSION="v0.17.15"
+# Define version for download
+VERSION="v0.17.16"
 
 # Check if running on supported platform
 check_platform() {
