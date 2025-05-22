@@ -1,150 +1,313 @@
-# recMEV
+# recMEV Installer
 
-A CLI tool for executing arbitrage strategies and token swaps on Solana.
+This repository contains the installation package for recMEV.
 
-## Development Status
+## Overview
 
-For public installation instructions, please refer to [recMEV-installer](https://github.com/RECTOR-LABS/recMEV-installer).
+recMEV installer package provides an automated way to install the recMEV binary on your system. Currently available for:
 
-## Features
+- macOS
+- Linux
 
-- CLI interface for executing trades and token swaps
-- Jupiter integration for optimal token swaps with customizable parameters
-- Real transaction handling with proper signing and confirmation
-- Token price lookups and caching via Jupiter API
-- Special handling for JUP token trades with optimized parameters
-- Improved trade execution with deadline enforcement and profitability checks
-- Configurable logging system with JSON formatting
-- Automatic updates via GitHub releases
-- Solana blockchain integration
-- Configuration management for customizing settings
-- Pure Rust TLS implementation for improved cross-platform compatibility
-- Multi-wallet support with secure wallet management
-- Encrypted storage for sensitive information with password protection
-- Enhanced user experience with clear help messages and command examples
-- Token account management with close functionality
-- IPC communication with Python AI engine for trade parameter optimization
+The installer places the binary in the system binary directory (`/usr/local/bin`)
 
-## Development Prerequisites
+## Components
 
-- Rust (latest stable)
-- Solana CLI tools
-- Python 3.8+ (for AI engine)
+- `recmev-v0.17.16-mac`: macOS binary
+- `recmev-v0.17.16-linux`: Linux binary
+- `install.sh`: Installation script with platform detection
 
-## Development Setup
+## Installation
 
-1. Clone the repository with submodules:
+### Option 1: One-Line Installation (Recommended)
+
+Install recMEV with a single command:
 
 ```bash
-git clone --recursive https://github.com/yourusername/recMEV.git
-cd recMEV
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/install.sh)"
 ```
 
-2. Build the Rust CLI:
+This method will:
+
+- Create necessary configuration directories
+- Download and install the appropriate binary for your system
+
+### Option 2: Direct Script Execution
+
+If you've cloned the repository or downloaded the install script:
 
 ```bash
-cargo build --release
+./install.sh
 ```
 
-3. Set up Python environment for AI engine (optional):
+### Option 3: Manual Installation
+
+For users who prefer to perform the installation steps manually:
 
 ```bash
-conda env create -f environment.yml
-conda activate recmev
+# Create config directory if it doesn't exist
+mkdir -p ~/.recmev
+
+# Download binary (replace OS with either 'linux' or 'mac' based on your system)
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.17.16/recmev-v0.17.16-OS -o recmev
+
+# Install binary
+chmod +x recmev
+sudo mv recmev /usr/local/bin/recmev
 ```
 
-## Architecture
+### Installing Specific Versions
 
-- `src/main.rs`: Entry point with logging setup and command dispatch
-- `src/cli.rs`: Command-line interface implementation using clap
-- `src/executor.rs`: Trade execution and business logic
-- `src/config.rs`: Configuration management with platform-specific paths
-- `src/jupiter.rs`: Jupiter DEX integration for token swaps
-- `src/ipc.rs`: Inter-process communication with the Python AI engine
-- `ai_engine.py`: Python script for AI parameter optimization
-
-## Configuration System
-
-Configuration file locations:
-
-- **Windows**: `%APPDATA%\recmev\config.toml`
-- **Unix/Linux/macOS**: `~/.recmev/config.toml`
-
-Development commands:
+To install a specific version of recMEV, you'll need to modify the version number in the installation URL. For example, to install version v0.5.0:
 
 ```bash
-# View configuration
-recmev config --show
-
-# Modify configuration
-recmev config set <key> <value>
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.5.0/install.sh)"
 ```
 
-## Release Process
+Note on URLs:
 
-For release instructions, see [build-and-release-instructions.md](build-and-release-instructions.md).
+- For installation (raw content): Use `https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/VERSION/...`
+- For browsing files on GitHub: Use `https://github.com/RECTOR-LABS/recMEV-installer/tree/VERSION`
 
-## Testing
+Available versions:
 
-Run the test suite:
+- v0.17.16 (latest) - Enhance error handling for wallet accounts commands, improve help message formatting and examples.
+- v0.17.15 - Enhanced uninstall command, improved logs with filtering options, and rate-limited transaction history
+- v0.17.10 - Version tracking system with build timestamps and enhanced logging functionality
+- v0.17.9 - Multi-wallet support with encrypted storage and enhanced security
+- v0.16.25 - Session-based wallet authentication and Jupiter v1 API integration
+- v0.16.21 - Real transaction handling and price lookups via Jupiter API
+- v0.16.3 - Enhanced CLI Logic
+- v0.15.14 - Enhanced report command with time filtering and improved terminal UI
+- v0.15.13 - Enhanced encryption capabilities and improved wallet security
+- v0.15.9 - Improved config command and enhanced logging system
+- v0.15.7 - Enhanced stability and performance improvements
+- v0.15.6 - Enhanced stability and performance improvements
+- v0.15.4 - Shell completion support and version management
+- v0.13.10 - Enhanced stability and performance improvements
+- v0.13.9 - Bug fixes and stability improvements
+- v0.13.8 - Bug fixes and stability improvements
+- v0.13.5 - Jupiter DEX integration for token swaps
+- v0.13.4 - Enhanced DEX integration and performance improvements
+- v0.12.0 - Jupiter DEX integration
+- v0.11.0 - Pure Rust TLS implementation
+- v0.9.4 - Bug fixes and stability improvements
+- v0.9.2 - Enhanced error handling and reporting
+- v0.9.1 - Transaction optimization
+- v0.9.0 - Major performance improvements
+- v0.8.1 - Configuration system update
+- v0.7.1 - Transaction batch processing
+- v0.6.2 - Stability improvements and bug fixes
+- v0.5.6 - Blockchain transaction optimizations
+- v0.5.5 - Enhanced monitoring capabilities
+- v0.5.4 - Config file format updates
+- v0.5.3 - Performance improvements for large transactions
+- v0.5.1 - CLI enhancement for readability
+- v0.5.0 - First stable release with core functionality
+- v0.4.0 - Transaction subsystem complete
+- v0.3.5 - Transaction signing improvements
+- v0.3.4 - Enhanced logging capabilities
+- v0.3.3 - Bug fixes and stability improvements
+- v0.3.2 - Configuration enhancements
+- v0.3.1 - Improved error messages
+- v0.2.4 - CLI interface improvements
+- v0.2.3 - Bug fixes and performance enhancements
+- v0.2.2 - Configuration system updates
+- v0.2.1 - Minor bug fixes and improvements
+- v0.2.0 - Redesigned architecture
+- v0.1.3 - Initial transaction support
+- v0.1.2 - Basic CLI functionality
+- v0.1.1 - Bug fixes and improvements
+- v0.1.0 - Initial alpha release
+
+You can find all available versions on our [GitHub releases page](https://github.com/RECTOR-LABS/recMEV-installer/releases).
+
+## Uninstallation
+
+You can uninstall recMEV using the following commands:
 
 ```bash
-cargo test
+# Basic uninstallation (keeps logs and config)
+recmev uninstall
+
+# Full uninstallation (removes all data including logs and config)
+recmev uninstall --all
 ```
+
+**Platform-specific uninstallation notes:**
+
+- **Both Linux and macOS**: Files in system directories like `/usr/local/bin` require sudo privileges to remove
+- The uninstall command will automatically attempt to use sudo if available without password
+- If automatic sudo fails, you'll need to use explicit sudo:
+
+```bash
+# For Linux and macOS
+sudo recmev uninstall --all
+```
+
+**macOS note:** On macOS, the system may prompt for your password when attempting to remove files from `/usr/local/bin`. This is normal behavior, as these directories are protected by the system.
+
+### Manual Uninstallation
+
+If you need to manually uninstall recMEV, follow these steps:
+
+1. Remove the binary:
+
+```bash
+sudo rm /usr/local/bin/recmev
+```
+
+2. Remove configuration files (optional):
+
+```bash
+rm -rf ~/.recmev
+```
+
+3. Remove log files (optional):
+
+```bash
+rm -rf ~/.recmev/logs
+```
+
+4. Remove cache files (optional):
+
+```bash
+rm -rf ~/.recmev/cache
+```
+
+5. Remove shell completions (if installed):
+
+```bash
+# Bash
+rm ~/.recmev/completion/recmev.bash
+
+# Zsh
+rm ~/.recmev/completion/_recmev
+
+# Fish
+rm ~/.recmev/fish/completions/recmev.fish
+```
+
+**Note:** The exact paths may vary slightly depending on your system configuration and installation method.
+
+## Post-Installation Verification
+
+After installation, verify that recMEV was installed correctly:
+
+```bash
+recmev --help
+```
+
+## Security
+
+The installation process includes several security measures:
+
+1. HTTPS downloads from trusted sources
+2. Secure temporary directory handling
+3. System-wide installation with proper permissions
+
+## Development
+
+For local development and testing of the installer:
+
+```bash
+# Set the local development flag
+RECMEV_INSTALLER_LOCAL=1 ./install.sh
+```
+
+### Platform Notes
+
+The installer automatically detects your operating system and will:
+
+- Install the appropriate binary for Linux or macOS systems
+- Exit with an error on unsupported platforms
+
+## Troubleshooting
+
+Common issues and solutions:
+
+1. Permission denied
+
+   ```bash
+   chmod +x ./install.sh  # Make the script executable
+   ```
+
+2. Download failed
+
+   - Ensure you have a stable internet connection
+   - Try downloading the files again
+   - Verify your system is supported (Linux or macOS)
+
+3. Binary not found after installation
+   - Ensure /usr/local/bin is in your PATH
+   - Try running `echo $PATH` to verify
+   - Try running `which recmev` to locate the binary
+
+## Shell Completions
+
+recMEV supports shell completions for Bash, Zsh, and Fish shells. The installer automatically:
+
+1. Generates completion scripts using the `completions` command
+2. Stores them in `~/.recmev/completion/`
+3. Attempts to automatically configure completions for your current shell
+
+### Manual Generation and Setup
+
+You can also manually generate completion scripts using the `completions` command:
+
+```bash
+# Generate completions for your preferred shell
+recmev completions bash                          # Generate to current directory
+recmev completions zsh -o ~/.zsh/completions     # Generate to specific directory
+recmev completions fish -o ~/.config/fish/completions
+```
+
+If automatic setup fails or if you want to manually enable completions:
+
+#### Bash
+
+Add the following to your `~/.bashrc` or `~/.bash_profile`:
+
+```bash
+[ -f ~/.recmev/completion/recmev.bash ] && source ~/.recmev/completion/recmev.bash
+```
+
+#### Zsh
+
+Add the following to your `~/.zshrc`:
+
+```zsh
+# Add recmev completions dir to fpath
+fpath=(~/.recmev/completion $fpath)
+autoload -U compinit && compinit
+```
+
+#### Fish
+
+Link the completion file to your Fish completions directory:
+
+```fish
+ln -sf ~/.recmev/fish/completions/recmev.fish ~/.config/fish/completions/recmev.fish
+```
+
+### Testing Completions
+
+After enabling completions and restarting your shell (or sourcing your profile), you can test them by typing:
+
+```bash
+recmev <TAB>
+```
+
+This should display available commands and options.
+
+## Support
+
+For issues, feature requests, or contributions:
+
+- Open an issue on our [GitHub repository](https://github.com/RECTOR-LABS/recMEV-installer)
+- Submit a pull request
+- Check existing issues for solutions
 
 ## License
 
 recMEV Non-Commercial License v1.0. For personal, research, or educational purposes only. See LICENSE file for details.
-
-## Usage
-
-Available Commands:
-
-```bash
-# Execute a trade
-recmev trade --pair SOL/USDC
-
-# Execute a token swap using Jupiter
-recmev wallet swap SOL USDC 0.1
-recmev wallet swap <input_token> <output_token> <amount> --slippage 50 --priority-fee 0.000001
-
-# Wallet management
-recmev wallet list                  # List all wallets
-recmev wallet add <name>            # Add a new wallet (interactive)
-recmev wallet add <name> --create-new  # Create a new wallet with generated key
-recmev wallet use <name>            # Switch to a different wallet
-recmev wallet show                  # Show wallet details and balances
-recmev wallet send <recipient> <amount>  # Send SOL to another wallet
-recmev wallet export <name>         # Export wallet private key (with security warnings)
-
-# View beginner's guide
-recmev guide
-
-# View logs (last 50 lines by default)
-recmev logs
-recmev logs --lines 100 --verbose
-
-# Generate error report
-recmev report                         # Basic error report
-recmev report --description "Issue description" --system-info  # Detailed report with system info
-recmev report --lines 200            # Include more log lines in report
-
-# Configure settings
-recmev config --show                  # Show current configuration
-recmev config --log-dir ~/my-logs    # Set custom log directory
-recmev config --max-slippage-bps 50  # Set maximum slippage for swaps (in basis points)
-recmev config --priority-fee-sol 0.000001  # Set priority fee for transactions (in SOL)
-
-# Update to latest version
-recmev update
-
-# Generate shell completions
-recmev completions bash             # Generate Bash completions to current directory
-recmev completions zsh -o ~/.zsh    # Generate Zsh completions to specified directory
-recmev completions fish             # Generate Fish completions
-
-# Uninstall recmev
-recmev uninstall                  # Basic uninstall (keeps config and logs)
-recmev uninstall --all            # Complete uninstall (removes all files)
-sudo recmev uninstall --all       # For system-level files requiring sudo on Linux/macOS
-```
