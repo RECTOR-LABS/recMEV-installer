@@ -1,3 +1,70 @@
+## [0.18.7]
+
+### Added
+
+- **Improved Help Documentation System:**
+
+  - Created comprehensive help modules for all major commands (install, uninstall, wallet, config, logs, trade, report)
+  - Enhanced install and uninstall help with step-by-step guidance
+  - Improved wallet help documentation with comprehensive command examples
+
+- **New Utility Module Structure:**
+  - Moved core utilities (executor, ipc, jupiter, price) to dedicated utils module
+  - Added keypair utility functions for improved wallet management
+  - Enhanced modular code organization for better maintainability
+
+### Changed
+
+- **Major Code Refactoring and Organization:**
+
+  - Consolidated wallet-related functions into wallet_commands module for improved organization
+  - Moved utility modules (executor, ipc, jupiter, price) to utils directory for better structure
+  - Centralized help command handling across all modules for consistency
+  - Streamlined command handling in main.rs with improved organization
+
+- **Wallet Command Enhancements:**
+
+  - Refactored wallet command structure by moving keypair utilities to dedicated module
+  - Improved wallet accounts command with better error handling
+  - Enhanced transaction history display with better formatting
+  - Consolidated wallet-related functions for improved maintainability
+  - Removed obsolete wallets module to streamline codebase
+
+- **Configuration and Help System:**
+
+  - Centralized help logic in config command for improved maintainability
+  - Improved overall user guidance with better command documentation
+  - Refined help command output organization and readability
+  - Updated configuration help documentation for clarity
+
+- **Build and Dependency Management:**
+  - Updated dependencies in Cargo files to reflect new version
+  - Cleaned up unused dependencies for better performance
+  - Enhanced build process with improved module structure
+  - Updated Cross.toml and Makefile for better build management
+
+### Fixed
+
+- **Code Organization and Maintenance:**
+
+  - Removed duplicate help information and centralized help message handling
+  - Fixed formatting issues in command help display
+  - Improved command line argument handling for nested subcommands
+  - Fixed module imports and dependencies after refactoring
+
+- **General Improvements:**
+  - Enhanced transaction handling consistency across commands
+  - Improved user experience with better progress indicators
+  - Fixed various formatting and display issues
+  - Enhanced overall code maintainability and organization
+
+### Removed
+
+- **Deprecated Modules and Files:**
+  - Removed unused wallets module from wallet_commands
+  - Cleaned up obsolete help.rs file in favor of modular help system
+  - Removed unused executor, ipc, jupiter, and price modules from root src directory
+
 ## [0.17.16]
 
 ### Added
