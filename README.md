@@ -13,8 +13,8 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 
 ## Components
 
-- `recmev-v0.18.12-mac`: macOS binary
-- `recmev-v0.18.12-linux`: Linux binary
+- `recmev-v0.18.17-mac`: macOS binary
+- `recmev-v0.18.17-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -49,7 +49,7 @@ For users who prefer to perform the installation steps manually:
 mkdir -p ~/.recmev
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.18.12/recmev-v0.18.12-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.18.17/recmev-v0.18.17-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -66,7 +66,8 @@ sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-install
 
 Available versions:
 
-- v0.18.12 (latest) - Enhanced development infrastructure with pre-commit hooks, advanced configuration management with Supabase integration, modular help documentation system, and major code refactoring for improved organization
+- v0.18.17 (latest) - Major modular configuration system refactoring, enhanced development infrastructure with automated documentation, comprehensive pre-commit hooks, and removal of deprecated database functionality for streamlined architecture
+- v0.18.12 - Enhanced development infrastructure with pre-commit hooks, advanced configuration management with Supabase integration, modular help documentation system, and major code refactoring for improved organization
 - v0.18.7 - comprehensive help documentation system, and major code refactoring for improved organization
 - v0.17.16 - Enhance error handling for wallet accounts commands, improve help message formatting and examples.
 - v0.17.15 - Enhanced uninstall command, improved logs with filtering options, and rate-limited transaction history
