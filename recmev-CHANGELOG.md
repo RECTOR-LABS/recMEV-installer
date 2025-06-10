@@ -1,3 +1,66 @@
+## [0.18.21]
+
+### Changed
+
+- **Cross-Compilation Infrastructure:**
+
+  - Enhanced Cross.toml configuration with improved Linux and macOS target support
+  - Added proper cross-compilation setup for aarch64-apple-darwin (macOS ARM64)
+  - Improved cross-compilation image configuration for better build reliability
+  - Fixed Cross.toml syntax issues and added comprehensive target configurations
+
+- **Build System Improvements:**
+
+  - Enhanced Makefile with platform detection capabilities (UNAME_S and UNAME_M)
+  - Added new development targets: `dev` for quick development builds and `dev-run` for running with arguments
+  - Improved build process with native vs cross-compilation detection for macOS builds
+  - Enhanced build output with better logging and status messages
+  - Added comprehensive .PHONY targets for better make functionality
+
+- **System Integration Enhancements:**
+  - Improved uninstall command with direct sudo command execution for better reliability
+  - Enhanced error handling in uninstall process with more detailed error reporting
+  - Simplified system file removal process by removing intermediate utility functions
+  - Better user feedback during uninstallation with clearer success/error messages
+
+### Removed
+
+- **Code Cleanup:**
+  - Removed .cargo/config.toml in favor of Cross.toml configuration
+  - Removed src/utils/system.rs utility module to simplify codebase
+  - Cleaned up system utility exports from utils/mod.rs
+  - Streamlined uninstall process by removing complex sudo wrapper functions
+
+### Fixed
+
+- **Build System Reliability:**
+
+  - Fixed Cross.toml syntax errors that were preventing proper cross-compilation
+  - Resolved cross-compilation configuration issues for Linux and macOS targets
+  - Improved build artifact generation and copying to installer directory
+  - Enhanced build verification and error detection
+
+- **Uninstall Process Improvements:**
+  - Fixed sudo command execution for system file removal
+  - Improved error handling and user feedback during uninstallation
+  - Enhanced uninstall process reliability with direct command execution
+  - Better handling of permission-related errors during system file removal
+
+### Technical Improvements
+
+- **Development Workflow:**
+
+  - Enhanced development experience with new make targets for quick builds and testing
+  - Improved cross-platform build support with automatic platform detection
+  - Better build system organization with clearer target definitions
+  - Enhanced development productivity with streamlined build commands
+
+- **Code Organization:**
+  - Simplified utility module structure by removing unused system utilities
+  - Improved code maintainability by eliminating complex wrapper functions
+  - Enhanced error handling consistency across system operations
+  - Better separation of concerns in build and system management code
+
 ## [0.18.20]
 
 ### Removed
