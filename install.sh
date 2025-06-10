@@ -2,7 +2,7 @@
 set -e
 
 # Define version for download
-VERSION="v0.18.21"
+VERSION="v0.18.22"
 
 # Check if running on supported platform
 check_platform() {
@@ -28,8 +28,9 @@ confirm_installation() {
     echo "  • Install recMEV binary to ${INSTALL_DIR}/recmev"
     echo "  • Create configuration directory at $HOME/.recmev"
     echo "  • Set up shell completions for your terminal"
+    echo "  • Add ${INSTALL_DIR} to your PATH"
     echo
-    echo "The installer requires sudo access to install the binary to ${INSTALL_DIR}."
+    echo "No sudo access required - this is a user-local installation."
     echo
 
     # Prompt for confirmation
@@ -49,11 +50,12 @@ confirm_installation() {
 
 # Function to ensure installation directory exists
 ensure_install_dir() {
-    # We'll install to /usr/local/bin which should already exist on most systems
-    INSTALL_DIR="/usr/local/bin"
+    # Install to user-local directory instead of system-wide
+    INSTALL_DIR="$HOME/.recmev/bin"
     
-    # Create config directory
+    # Create both config and bin directories
     mkdir -p "$HOME/.recmev"
+    mkdir -p "$INSTALL_DIR"
 }
 
 # Function to install shell completions
@@ -184,6 +186,19 @@ setup_shell_integration() {
                 if [ "$IS_MACOS" = "1" ]; then
                     # First try .bash_profile which is more common on macOS
                     if [ -f "$HOME/.bash_profile" ]; then
+                        # Add PATH setup
+                        if ! grep -q "recmev/bin" "$HOME/.bash_profile"; then
+                            echo "" >> "$HOME/.bash_profile"
+                            echo "# recMEV PATH" >> "$HOME/.bash_profile"
+                            echo "export PATH=\"\$HOME/.recmev/bin:\$PATH\"" >> "$HOME/.bash_profile"
+                            echo "✅ Added recMEV to PATH in ~/.bash_profile"
+                            PATH_CONFIGURED=1
+                        else
+                            echo "✅ recMEV PATH already configured in ~/.bash_profile"
+                            PATH_CONFIGURED=1
+                        fi
+                        
+                        # Add completion setup
                         if ! grep -q "recmev completion" "$HOME/.bash_profile"; then
                             echo "" >> "$HOME/.bash_profile"
                             echo "# recmev completion" >> "$HOME/.bash_profile"
@@ -206,6 +221,19 @@ setup_shell_integration() {
                         fi
                     elif [ -f "$HOME/.bashrc" ]; then
                         # Fall back to .bashrc if .bash_profile doesn't exist
+                        # Add PATH setup
+                        if ! grep -q "recmev/bin" "$HOME/.bashrc"; then
+                            echo "" >> "$HOME/.bashrc"
+                            echo "# recMEV PATH" >> "$HOME/.bashrc"
+                            echo "export PATH=\"\$HOME/.recmev/bin:\$PATH\"" >> "$HOME/.bashrc"
+                            echo "✅ Added recMEV to PATH in ~/.bashrc"
+                            PATH_CONFIGURED=1
+                        else
+                            echo "✅ recMEV PATH already configured in ~/.bashrc"
+                            PATH_CONFIGURED=1
+                        fi
+                        
+                        # Add completion setup
                         if ! grep -q "recmev completion" "$HOME/.bashrc"; then
                             echo "" >> "$HOME/.bashrc"
                             echo "# recmev completion" >> "$HOME/.bashrc"
@@ -228,19 +256,36 @@ setup_shell_integration() {
                         fi
                     else
                         # Create .bash_profile if neither exists
-                        echo "# recmev completion" > "$HOME/.bash_profile"
+                        echo "# recMEV PATH" > "$HOME/.bash_profile"
+                        echo "export PATH=\"\$HOME/.recmev/bin:\$PATH\"" >> "$HOME/.bash_profile"
+                        echo "" >> "$HOME/.bash_profile"
+                        echo "# recmev completion" >> "$HOME/.bash_profile"
                         echo "[ -f $COMPLETION_DIR/recmev.bash ] && source $COMPLETION_DIR/recmev.bash" >> "$HOME/.bash_profile"
                         echo "" >> "$HOME/.bash_profile"
                         echo "# Enable bash completion system if available (macOS)" >> "$HOME/.bash_profile"
                         echo "[ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ] && . \"/usr/local/etc/profile.d/bash_completion.sh\"" >> "$HOME/.bash_profile"
                         echo "[ -r \"/opt/homebrew/etc/profile.d/bash_completion.sh\" ] && . \"/opt/homebrew/etc/profile.d/bash_completion.sh\"" >> "$HOME/.bash_profile"
                         echo "[ -r \"/usr/local/etc/bash_completion\" ] && . \"/usr/local/etc/bash_completion\"" >> "$HOME/.bash_profile"
-                        echo "✅ Created ~/.bash_profile with Bash completion configuration"
+                        echo "✅ Created ~/.bash_profile with PATH and Bash completion configuration"
                         SHELL_CONFIGURED=1
+                        PATH_CONFIGURED=1
                     fi
                 else
                     # On Linux, use .bashrc
                     if [ -f "$HOME/.bashrc" ]; then
+                        # Add PATH setup
+                        if ! grep -q "recmev/bin" "$HOME/.bashrc"; then
+                            echo "" >> "$HOME/.bashrc"
+                            echo "# recMEV PATH" >> "$HOME/.bashrc"
+                            echo "export PATH=\"\$HOME/.recmev/bin:\$PATH\"" >> "$HOME/.bashrc"
+                            echo "✅ Added recMEV to PATH in ~/.bashrc"
+                            PATH_CONFIGURED=1
+                        else
+                            echo "✅ recMEV PATH already configured in ~/.bashrc"
+                            PATH_CONFIGURED=1
+                        fi
+                        
+                        # Add completion setup
                         if ! grep -q "recmev completion" "$HOME/.bashrc"; then
                             echo "" >> "$HOME/.bashrc"
                             echo "# recmev completion" >> "$HOME/.bashrc"
@@ -253,10 +298,14 @@ setup_shell_integration() {
                         fi
                     else
                         # Create .bashrc if it doesn't exist
-                        echo "# recmev completion" > "$HOME/.bashrc"
+                        echo "# recMEV PATH" > "$HOME/.bashrc"
+                        echo "export PATH=\"\$HOME/.recmev/bin:\$PATH\"" >> "$HOME/.bashrc"
+                        echo "" >> "$HOME/.bashrc"
+                        echo "# recmev completion" >> "$HOME/.bashrc"
                         echo "[ -f $COMPLETION_DIR/recmev.bash ] && source $COMPLETION_DIR/recmev.bash" >> "$HOME/.bashrc"
-                        echo "✅ Created ~/.bashrc with Bash completion"
+                        echo "✅ Created ~/.bashrc with PATH and Bash completion"
                         SHELL_CONFIGURED=1
+                        PATH_CONFIGURED=1
                     fi
                 fi
 
@@ -303,6 +352,19 @@ setup_shell_integration() {
                     
                     # Check if fpath includes our directory
                     if [ -f "$HOME/.zshrc" ]; then
+                        # Add PATH setup
+                        if ! grep -q "recmev/bin" "$HOME/.zshrc"; then
+                            echo "" >> "$HOME/.zshrc"
+                            echo "# recMEV PATH" >> "$HOME/.zshrc"
+                            echo "export PATH=\"\$HOME/.recmev/bin:\$PATH\"" >> "$HOME/.zshrc"
+                            echo "✅ Added recMEV to PATH in ~/.zshrc"
+                            PATH_CONFIGURED=1
+                        else
+                            echo "✅ recMEV PATH already configured in ~/.zshrc"
+                            PATH_CONFIGURED=1
+                        fi
+                        
+                        # Add completion setup
                         if ! grep -q "recmev completion" "$HOME/.zshrc"; then
                             echo "" >> "$HOME/.zshrc"
                             echo "# recmev completion" >> "$HOME/.zshrc"
@@ -316,11 +378,15 @@ setup_shell_integration() {
                         fi
                     else
                         # Create .zshrc if it doesn't exist
-                        echo "# recmev completion" > "$HOME/.zshrc"
+                        echo "# recMEV PATH" > "$HOME/.zshrc"
+                        echo "export PATH=\"\$HOME/.recmev/bin:\$PATH\"" >> "$HOME/.zshrc"
+                        echo "" >> "$HOME/.zshrc"
+                        echo "# recmev completion" >> "$HOME/.zshrc"
                         echo "fpath=($HOME/.zsh/completion \$fpath)" >> "$HOME/.zshrc"
                         echo "autoload -U compinit && compinit" >> "$HOME/.zshrc"
-                        echo "✅ Created ~/.zshrc with Zsh completion"
+                        echo "✅ Created ~/.zshrc with PATH and Zsh completion"
                         SHELL_CONFIGURED=1
+                        PATH_CONFIGURED=1
                     fi
                 fi
             elif [ "$ZSH_OK" != "1" ]; then
@@ -341,6 +407,26 @@ setup_shell_integration() {
                     mkdir -p "$HOME/.config/fish/completions"
                     ln -sf "$HOME/.recmev/fish/completions/recmev.fish" "$HOME/.config/fish/completions/recmev.fish"
                     
+                    # Add PATH setup for Fish
+                    mkdir -p "$HOME/.config/fish"
+                    if [ -f "$HOME/.config/fish/config.fish" ]; then
+                        if ! grep -q "recmev/bin" "$HOME/.config/fish/config.fish"; then
+                            echo "" >> "$HOME/.config/fish/config.fish"
+                            echo "# recMEV PATH" >> "$HOME/.config/fish/config.fish"
+                            echo "set -gx PATH \$HOME/.recmev/bin \$PATH" >> "$HOME/.config/fish/config.fish"
+                            echo "✅ Added recMEV to PATH in ~/.config/fish/config.fish"
+                            PATH_CONFIGURED=1
+                        else
+                            echo "✅ recMEV PATH already configured in ~/.config/fish/config.fish"
+                            PATH_CONFIGURED=1
+                        fi
+                    else
+                        echo "# recMEV PATH" > "$HOME/.config/fish/config.fish"
+                        echo "set -gx PATH \$HOME/.recmev/bin \$PATH" >> "$HOME/.config/fish/config.fish"
+                        echo "✅ Created ~/.config/fish/config.fish with PATH setup"
+                        PATH_CONFIGURED=1
+                    fi
+                    
                     echo "✅ Added Fish completion to ~/.recmev/fish/completions/ (symlinked to ~/.config/fish/completions/)"
                     SHELL_CONFIGURED=1
                 fi
@@ -355,25 +441,35 @@ setup_shell_integration() {
             ;;
     esac
     
-    if [ "$SHELL_CONFIGURED" = "1" ]; then
-        echo "🎉 Shell completions have been configured for $CURRENT_SHELL"
+    if [ "$SHELL_CONFIGURED" = "1" ] || [ "$PATH_CONFIGURED" = "1" ]; then
+        echo "🎉 Shell integration has been configured for $CURRENT_SHELL"
         
         # macOS-specific activation instructions
         if [ "$IS_MACOS" = "1" ]; then
             case "$CURRENT_SHELL" in
                 bash)
                     if [ -f "$HOME/.bash_profile" ]; then
-                        echo "   Please restart your terminal or run 'source ~/.bash_profile' to activate completions"
+                        echo "   Please restart your terminal or run 'source ~/.bash_profile' to activate changes"
                     else
-                        echo "   Please restart your terminal or run 'source ~/.bashrc' to activate completions"
+                        echo "   Please restart your terminal or run 'source ~/.bashrc' to activate changes"
                     fi
                     ;;
+                fish)
+                    echo "   Please restart your terminal or run 'source ~/.config/fish/config.fish' to activate changes"
+                    ;;
                 *)
-                    echo "   Please restart your terminal or run 'source ~/.${CURRENT_SHELL}rc' to activate completions"
+                    echo "   Please restart your terminal or run 'source ~/.${CURRENT_SHELL}rc' to activate changes"
                     ;;
             esac
         else
-            echo "   Please restart your terminal or run 'source ~/.${CURRENT_SHELL}rc' to activate completions"
+            case "$CURRENT_SHELL" in
+                fish)
+                    echo "   Please restart your terminal or run 'source ~/.config/fish/config.fish' to activate changes"
+                    ;;
+                *)
+                    echo "   Please restart your terminal or run 'source ~/.${CURRENT_SHELL}rc' to activate changes"
+                    ;;
+            esac
         fi
     fi
 }
@@ -395,11 +491,12 @@ print_completion_instructions() {
     echo "🔍 Shell completion setup:"
     echo ""
     echo "  Completion files have been installed to: $HOME/.recmev/completion"
+    echo "  Binary installed to: $HOME/.recmev/bin/recmev"
     echo ""
     
-    if [ "$SHELL_CONFIGURED" = "1" ]; then
-        echo "  ✅ Your shell has been automatically configured for completions."
-        echo "  To activate them now, run:"
+    if [ "$SHELL_CONFIGURED" = "1" ] || [ "$PATH_CONFIGURED" = "1" ]; then
+        echo "  ✅ Your shell has been automatically configured."
+        echo "  To activate changes now, run:"
         
         case "$(basename "$SHELL")" in
             bash)
@@ -413,8 +510,6 @@ print_completion_instructions() {
                 echo "    source ~/.zshrc"
                 ;;
             fish)
-                # The symlink to .config/fish/completions should already work,
-                # but we'll still mention the config file for consistency
                 echo "    source ~/.config/fish/config.fish"
                 ;;
         esac
@@ -422,12 +517,13 @@ print_completion_instructions() {
         echo ""
         echo "  Or simply restart your terminal."
     else
-        echo "  Completions need manual setup. Run this to auto-configure:"
-        echo "    recmev completions"
+        echo "  Manual setup needed:"
+        echo "    1. Add to your PATH: export PATH=\"\$HOME/.recmev/bin:\$PATH\""
+        echo "    2. Run: recmev completions"
         echo ""
     fi
     
-    echo "  To test if completions are working:"
+    echo "  To test if everything is working:"
     echo "    1. Type 'recmev' and press Tab twice"
     echo "    2. Type 'recmev config --' and press Tab"
     echo ""
@@ -463,12 +559,11 @@ EOF
 do_install() {
     REPO="RECTOR-LABS/recMEV-installer"
     BASE_URL="https://raw.githubusercontent.com/${REPO}/${VERSION}"
-    INSTALL_DIR="/usr/local/bin"
 
     # Check platform compatibility and set binary name
     check_platform
     
-    # Create directories
+    # Create directories (this sets INSTALL_DIR)
     ensure_install_dir
     
     # Display installation confirmation prompt
@@ -476,12 +571,8 @@ do_install() {
     
     echo "🔧 Installing recMEV ${VERSION} for $(uname -s)..."
 
-    # Use sudo only if not already root
-    SUDO=""
-    if [ $(id -u) -ne 0 ]; then
-        SUDO="sudo"
-    fi
-
+    # No sudo needed for user-local installation
+    
     # Create temporary directory
     TMP_DIR=$(mktemp -d)
     cd "$TMP_DIR"
@@ -502,10 +593,10 @@ do_install() {
         exit 1
     fi
 
-    # Install binary
+    # Install binary (no sudo needed)
     echo "📦 Installing recMEV components..."
     chmod +x recmev
-    $SUDO mv recmev "${INSTALL_DIR}/recmev"
+    mv recmev "${INSTALL_DIR}/recmev"
 
     # Install shell completions
     install_completions

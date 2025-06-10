@@ -1,3 +1,53 @@
+## [0.18.22]
+
+### Changed
+
+- **Installation and Update System Improvements:**
+
+  - Enhanced installation process with improved user interaction and better error handling
+  - Added comprehensive PATH information and shell-specific guidance after installation
+  - Improved installation script execution with direct user interaction support
+  - Enhanced update command with detailed post-update instructions and shell configuration guidance
+  - Added platform-specific shell configuration instructions (bash, zsh, fish)
+  - Better error messaging and troubleshooting guidance for installation failures
+
+- **Uninstall System Enhancements:**
+  - Improved uninstall process with direct sudo command execution for better reliability
+  - Added support for new user-local installation path (`~/.recmev/bin/recmev`)
+  - Enhanced error handling and user feedback during uninstallation process
+  - Simplified uninstall logic with better error reporting and status messages
+  - Removed complex sudo wrapper functions in favor of direct command execution
+
+### Fixed
+
+- **Installation Process Reliability:**
+
+  - Fixed installation script execution to properly handle user interaction and sudo prompts
+  - Improved error handling for installation failures with clearer user guidance
+  - Enhanced installation verification and post-installation instructions
+  - Better handling of permission-related installation issues
+
+- **Uninstall Process Improvements:**
+  - Fixed sudo command execution for system file removal
+  - Improved error handling for uninstall operations with detailed error reporting
+  - Enhanced uninstall process reliability with direct command execution
+  - Better handling of permission-related errors during system file removal
+
+### Technical Improvements
+
+- **User Experience Enhancements:**
+
+  - Enhanced post-installation guidance with shell-specific instructions
+  - Improved error messages with actionable troubleshooting steps
+  - Better user feedback throughout installation and uninstall processes
+  - Enhanced verification instructions and PATH configuration guidance
+
+- **Code Organization:**
+  - Streamlined installation and uninstall command implementations
+  - Improved error handling consistency across system operations
+  - Enhanced code maintainability by simplifying complex wrapper functions
+  - Better separation of concerns in installation and system management code
+
 ## [0.18.21]
 
 ### Changed
@@ -512,6 +562,21 @@
   - Removed unused wallets module from wallet_commands
   - Cleaned up obsolete help.rs file in favor of modular help system
   - Removed unused executor, ipc, jupiter, and price modules from root src directory
+
+### Technical Improvements
+
+- **Development Workflow Enhancements:**
+
+  - Implemented automated code quality checks with pre-commit hooks
+  - Added comprehensive documentation automation scripts
+  - Enhanced development scripts for better maintainability
+  - Improved build system with better error detection and reporting
+
+- **Architecture Improvements:**
+  - Enhanced modular architecture with better separation of concerns
+  - Improved code organization with dedicated utility modules
+  - Better error handling and user feedback across all operations
+  - Enhanced configuration management with migration support
 
 ## [0.17.16]
 
