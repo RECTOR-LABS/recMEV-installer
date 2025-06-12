@@ -1,3 +1,48 @@
+## [0.18.23]
+
+### Changed
+
+- **Database Integration Improvements:**
+
+  - Updated Supabase table references from `jupiter_token_cache` to `token_mints` for better database organization
+  - Improved token cache terminology throughout the codebase for consistency
+  - Enhanced database query structure with updated table naming conventions
+
+- **Token Cache System Enhancements:**
+
+  - Renamed Jupiter-specific cache references to generic token cache for broader compatibility
+  - Updated token cache loading and management functions for improved clarity
+  - Enhanced token lookup system with consistent naming conventions
+  - Improved token cache file naming from `jupiter_token_cache.json` to `token_cache.json`
+
+- **Documentation and Help System Updates:**
+
+  - Updated all help documentation to reflect generic token cache instead of Jupiter-specific references
+  - Enhanced configuration help with updated Supabase parameter descriptions
+  - Improved discover command documentation with clearer token cache explanations
+  - Updated uninstall help documentation to reflect token cache terminology
+
+- **Code Organization and Consistency:**
+  - Refactored token cache module exports for better naming consistency
+  - Updated global cache variable names for improved code clarity
+  - Enhanced token lookup functions with consistent terminology
+  - Improved configuration type documentation for Supabase integration
+
+### Technical Improvements
+
+- **Database Schema Alignment:**
+
+  - Updated all database queries to use the new `token_mints` table structure
+  - Enhanced data freshness checks with updated table references
+  - Improved token statistics queries with consistent table naming
+  - Better alignment with backend database schema changes
+
+- **Cache Management:**
+  - Enhanced token cache loading and saving mechanisms
+  - Improved cache refresh logic with updated function names
+  - Better token cache file management and organization
+  - Enhanced memory cache management with consistent variable naming
+
 ## [0.18.22]
 
 ### Changed

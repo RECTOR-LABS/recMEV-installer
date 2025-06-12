@@ -13,8 +13,8 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 
 ## Components
 
-- `recmev-v0.18.22-mac`: macOS binary
-- `recmev-v0.18.22-linux`: Linux binary
+- `recmev-v0.18.23-mac`: macOS binary
+- `recmev-v0.18.23-linux`: Linux binary
 - `install.sh`: Installation script with platform detection
 
 ## Installation
@@ -49,7 +49,7 @@ For users who prefer to perform the installation steps manually:
 mkdir -p ~/.recmev
 
 # Download binary (replace OS with either 'linux' or 'mac' based on your system)
-curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.18.22/recmev-v0.18.22-OS -o recmev
+curl -fsSL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/v0.18.23/recmev-v0.18.23-OS -o recmev
 
 # Install binary
 chmod +x recmev
@@ -66,7 +66,8 @@ sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-install
 
 Available versions:
 
-- v0.18.22 (latest) - Enhanced installation and update system with improved user interaction, comprehensive PATH guidance, and streamlined uninstall process with direct sudo execution
+- v0.18.23 (latest) - Enhanced token cache system with unified database integration, updated Supabase table references to `token_mints`, improved token lookup mechanisms, and comprehensive documentation updates for better consistency
+- v0.18.22 - Enhanced installation and update system with improved user interaction, comprehensive PATH guidance, and streamlined uninstall process with direct sudo execution
 - v0.18.21 - Enhanced cross-compilation infrastructure with improved build system, platform detection, and streamlined uninstall process with better error handling
 - v0.18.20 - Streamlined project structure with removal of discover command functionality for improved maintainability and reduced codebase complexity
 - v0.18.17 - Major modular configuration system refactoring, enhanced development infrastructure with automated documentation, comprehensive pre-commit hooks, and removal of deprecated database functionality for streamlined architecture
