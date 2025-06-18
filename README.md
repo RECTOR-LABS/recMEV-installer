@@ -24,7 +24,7 @@ The installer places the binary in the system binary directory (`/usr/local/bin`
 Install recMEV with a single command:
 
 ```bash
-sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/master/install.sh)"
+sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-installer/main/install.sh)"
 ```
 
 This method will:
