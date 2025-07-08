@@ -66,7 +66,7 @@ sh -c "$(curl -sSfL https://raw.githubusercontent.com/RECTOR-LABS/recMEV-install
 
 Available versions:
 
-- v0.18.23 (latest) - Enhanced token cache system with unified database integration, updated Supabase table references to `token_mints`, improved token lookup mechanisms, and comprehensive documentation updates for better consistency
+- 0.18.23 - Enhanced token cache system with unified database integration, updated Supabase table references to `token_mints`, improved token lookup mechanisms, and comprehensive documentation updates for better consistency
 - v0.18.22 - Enhanced installation and update system with improved user interaction, comprehensive PATH guidance, and streamlined uninstall process with direct sudo execution
 - v0.18.21 - Enhanced cross-compilation infrastructure with improved build system, platform detection, and streamlined uninstall process with better error handling
 - v0.18.20 - Streamlined project structure with removal of discover command functionality for improved maintainability and reduced codebase complexity

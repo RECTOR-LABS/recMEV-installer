@@ -1,3 +1,28 @@
+## [0.18.24] - 2025-01-08
+
+### Changes
+
+- Updated package.json homepage and repository URLs to reflect new RECTOR-LABS organization
+- Cleaned up repository structure with updated git tracking for .claude/ and .cursor/ directories
+- Enhanced documentation with improved command references and usage examples
+- Refactored configuration management with better directory structure
+- Improved error handling across various command implementations
+- Enhanced wallet management with better session handling and validation
+- Updated build system with improved platform detection and cross-compilation support
+- Streamlined installation and update process with better user feedback
+- Enhanced help documentation with more comprehensive command examples
+- Improved logging system with better filtering and readability
+- Updated dependencies and improved overall code organization
+- Enhanced security with better validation and error handling
+- Improved transaction processing with better confirmation handling
+- Updated configuration migration with enhanced backup and restore functionality
+- Enhanced CLI interface with better command parsing and validation
+- Improved wallet encryption with better key management
+- Enhanced MEV discovery with improved filtering and analysis
+- Updated trading engine with better risk management and execution
+- Improved data persistence with better Supabase integration
+- Enhanced cross-platform compatibility with better build targets
+
 ## [0.18.23]
 
 ### Changed
