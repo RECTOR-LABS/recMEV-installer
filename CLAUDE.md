@@ -34,8 +34,8 @@ The recMEV installer repository serves as the public distribution point for the 
 recmev-v{MAJOR}.{MINOR}.{PATCH}-{PLATFORM}
 ```
 Examples:
-- `recmev-v0.18.23-linux`
-- `recmev-v0.18.23-mac`
+- `recmev-v0.19.1-linux`
+- `recmev-v0.19.1-mac`
 
 ## Development Guidelines
 
